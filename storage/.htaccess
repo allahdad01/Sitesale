@@ -1,0 +1,4 @@
+# Allow uploads directory, block everything else
+RewriteEngine On
+RewriteRule ^uploads/ - [L]
+RewriteRule ^ - [F,L]

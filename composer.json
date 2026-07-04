@@ -1,0 +1,16 @@
+{
+    "name": "almoqadas/travel-agency",
+    "description": "Al Moqadas Travel Agency - Hajj, Umrah & Worldwide Travel",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "src/Helpers/functions.php"
+        ]
+    },
+    "require": {
+        "php": ">=8.1"
+    }
+}

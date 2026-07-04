@@ -1,0 +1,11 @@
+# Deny direct access to private directories
+RewriteEngine On
+
+# Allow storage/uploads/, block everything else under these dirs
+RewriteRule ^storage/uploads/ - [L]
+RewriteRule ^(src|config|vendor|storage|resources|migrations)(/.*)?$ - [F,L,NC]
+
+# If not a real file or directory, route to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
