@@ -13,30 +13,6 @@ function previewImage(input, previewId) {
     reader.readAsDataURL(input.files[0]);
   }
 }
-
-tinymce.init({
-  selector: '#contentEditor',
-  license_key: 'gpl',
-  height: 500,
-  menubar: true,
-  plugins: [
-    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-    'insertdatetime', 'media', 'table', 'help', 'wordcount'
-  ],
-  toolbar:
-    'undo redo | blocks | bold italic forecolor backcolor | ' +
-    'alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ' +
-    'removeformat | image media link table | code fullscreen help',
-  content_style: 'body { font-family:Inter,sans-serif; font-size:15px; line-height:1.6; color:#333; }',
-  promotion: false,
-  branding: false,
-  setup: function (editor) {
-    editor.on('change', function () {
-      editor.save();
-    });
-  }
-});
 </script>
 <div class="topbar">
   <div><h1><?= $post ? 'Edit' : 'New' ?> Post</h1></div>
@@ -47,9 +23,7 @@ tinymce.init({
   <?= csrf_field() ?>
   <div class="settings-group">
     <div class="settings-grid">
-      <div class="settings-field"><label>Title</label><input type="text" name="title" value="<?= e($post['title'] ?? '') ?>" required></div>
       <div class="settings-field"><label>Slug</label><input type="text" name="slug" value="<?= e($post['slug'] ?? '') ?>"></div>
-      <div class="settings-field"><label>Author</label><input type="text" name="author" value="<?= e($post['author'] ?? '') ?>"></div>
       <div class="settings-field"><label>Category</label><input type="text" name="category" value="<?= e($post['category'] ?? '') ?>" placeholder="e.g. team, travel"></div>
       <div class="settings-field"><label>Published at</label><input type="datetime-local" name="published_at" value="<?= $post ? date('Y-m-d\TH:i', strtotime($post['published_at'])) : date('Y-m-d\TH:i') ?>"></div>
       <div class="settings-field"><label>Featured</label>
@@ -58,6 +32,39 @@ tinymce.init({
       <div class="settings-field"><label>Active</label>
         <select name="active"><option value="1" <?= ($post['active'] ?? 1) ? 'selected' : '' ?>>Yes</option><option value="0" <?= !($post['active'] ?? 1) ? 'selected' : '' ?>>No</option></select>
       </div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <h2 class="settings-group-title">Title</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><input type="text" name="title_en" value="<?= e($post['title_en'] ?? $post['title'] ?? '') ?>" required></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="title_ps" value="<?= e($post['title_ps'] ?? '') ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="title_fa" value="<?= e($post['title_fa'] ?? '') ?>"></div>
+    </div>
+    <h2 class="settings-group-title" style="margin-top:16px">Author</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><input type="text" name="author_en" value="<?= e($post['author_en'] ?? $post['author'] ?? '') ?>"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="author_ps" value="<?= e($post['author_ps'] ?? '') ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="author_fa" value="<?= e($post['author_fa'] ?? '') ?>"></div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <h2 class="settings-group-title">Excerpt</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><textarea name="excerpt_en" rows="3"><?= e($post['excerpt_en'] ?? $post['excerpt'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="excerpt_ps" rows="3"><?= e($post['excerpt_ps'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="excerpt_fa" rows="3"><?= e($post['excerpt_fa'] ?? '') ?></textarea></div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <h2 class="settings-group-title">Content (HTML)</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><textarea id="contentEditor" name="content_en" rows="16" style="width:100%"><?= e($post['content_en'] ?? $post['content'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="content_ps" rows="16"><?= e($post['content_ps'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="content_fa" rows="16"><?= e($post['content_fa'] ?? '') ?></textarea></div>
     </div>
   </div>
 
@@ -78,19 +85,6 @@ tinymce.init({
     </div>
   </div>
 
-  <div class="settings-group">
-    <h2 class="settings-group-title">Excerpt</h2>
-    <div class="settings-field">
-      <textarea name="excerpt" rows="3" style="width:100%;font-size:13px;padding:12px;border:1px solid var(--border);border-radius:8px"><?= e($post['excerpt'] ?? '') ?></textarea>
-    </div>
-  </div>
-
-  <div class="settings-group">
-    <h2 class="settings-group-title">Content (HTML)</h2>
-    <div class="settings-field">
-      <textarea id="contentEditor" name="content" rows="16" style="width:100%"><?= e($post['content'] ?? '') ?></textarea>
-    </div>
-  </div>
-
   <button type="submit" class="btn-new" style="margin-top:16px"><i class="fas fa-save"></i> <?= $post ? 'Update' : 'Create' ?> Post</button>
 </form>
+<script>tinymce.init({selector:'#contentEditor',license_key:'gpl',height:500,menubar:true,plugins:['advlist','autolink','lists','link','image','charmap','preview','anchor','searchreplace','visualblocks','code','fullscreen','insertdatetime','media','table','help','wordcount'],toolbar:'undo redo | blocks | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | image media link table | code fullscreen help',content_style:'body{font-family:Inter,sans-serif;font-size:15px;line-height:1.6;color:#333}',promotion:false,branding:false,setup:function(editor){editor.on('change',function(){editor.save();})}});</script>

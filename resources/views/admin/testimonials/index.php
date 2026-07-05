@@ -54,31 +54,39 @@ function initials(string $name): string {
   <h3 style="font-size:14px;color:var(--navy);margin-bottom:12px">Add New Testimonial</h3>
   <form method="post" action="<?= base_url('admin/testimonials/add') ?>" enctype="multipart/form-data" style="max-width:600px">
     <?= csrf_field() ?>
-    <div class="settings-field" style="margin-bottom:12px">
-      <label>Name</label>
-      <input type="text" name="name" placeholder="e.g. Ahmad Karimi" required style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Name</h4>
+    <div class="locale-row" style="margin-bottom:12px">
+      <div class="locale-input"><label>EN</label><input type="text" name="name_en" placeholder="e.g. Ahmad Karimi" required></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="name_ps"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="name_fa"></div>
     </div>
-    <div class="settings-field" style="margin-bottom:12px">
-      <label>Position / Location</label>
-      <input type="text" name="position" placeholder="e.g. Umrah Pilgrim · Kabul" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Position / Location</h4>
+    <div class="locale-row" style="margin-bottom:12px">
+      <div class="locale-input"><label>EN</label><input type="text" name="position_en" placeholder="e.g. Umrah Pilgrim · Kabul"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="position_ps"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="position_fa"></div>
     </div>
-    <div class="settings-field" style="margin-bottom:12px">
-      <label>Rating</label>
-      <select name="rating" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
-        <option value="5">5 Stars</option>
-        <option value="4">4 Stars</option>
-        <option value="3">3 Stars</option>
-        <option value="2">2 Stars</option>
-        <option value="1">1 Star</option>
-      </select>
+    <div class="settings-grid" style="margin-bottom:12px">
+      <div class="settings-field">
+        <label>Rating</label>
+        <select name="rating">
+          <option value="5">5 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="2">2 Stars</option>
+          <option value="1">1 Star</option>
+        </select>
+      </div>
+      <div class="settings-field">
+        <label>Avatar Image (optional)</label>
+        <input type="file" name="avatar" accept="image/png,image/jpeg,image/webp">
+      </div>
     </div>
-    <div class="settings-field" style="margin-bottom:12px">
-      <label>Avatar Image (optional)</label>
-      <input type="file" name="avatar" accept="image/png,image/jpeg,image/webp" style="font-size:13px">
-    </div>
-    <div class="settings-field" style="margin-bottom:12px">
-      <label>Testimonial Text</label>
-      <textarea name="content" rows="4" placeholder="What did the client say?" required style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;resize:vertical"></textarea>
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Testimonial Text</h4>
+    <div class="locale-row" style="margin-bottom:12px">
+      <div class="locale-input"><label>EN</label><textarea name="content_en" rows="4" placeholder="What did the client say?" required></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="content_ps" rows="4"></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="content_fa" rows="4"></textarea></div>
     </div>
     <button type="submit" class="btn-new"><i class="fas fa-plus"></i> Add Testimonial</button>
   </form>

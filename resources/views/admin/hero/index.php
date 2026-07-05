@@ -9,30 +9,45 @@
   <?= csrf_field() ?>
 
   <div class="settings-group">
-    <h2 class="settings-group-title">Hero Text</h2>
-    <div class="settings-grid">
-      <div class="settings-field">
-        <label>Badge Text</label>
-        <input type="text" name="hero_badge" value="<?= e(setting('hero_badge', 'Trusted Since 2010 · Hajj & Umrah Specialists')) ?>">
-      </div>
-      <div class="settings-field">
-        <label>Title (HTML allowed)</label>
-        <textarea name="hero_title" rows="3"><?= e(setting('hero_title', 'Your Sacred Journey<br><span class="orange">Begins Here</span>')) ?></textarea>
-      </div>
-      <div class="settings-field">
-        <label>Subtitle</label>
-        <textarea name="hero_subtitle" rows="3"><?= e(setting('hero_subtitle', 'Premium Hajj & Umrah packages, worldwide flights, visa services, and curated travel experiences tailored for you.')) ?></textarea>
-      </div>
+    <h2 class="settings-group-title">Hero Badge</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><input type="text" name="hero_badge" value="<?= e(setting('hero_badge', 'Trusted Since 2010 · Hajj & Umrah Specialists')) ?>"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="hero_badge_ps" value="<?= e(setting('hero_badge_ps', '')) ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="hero_badge_fa" value="<?= e(setting('hero_badge_fa', '')) ?>"></div>
+    </div>
+    <h2 class="settings-group-title" style="margin-top:16px">Title (HTML allowed)</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><textarea name="hero_title" rows="3"><?= e(setting('hero_title', 'Your Sacred Journey<br><span class="orange">Begins Here</span>')) ?></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="hero_title_ps" rows="3"><?= e(setting('hero_title_ps', '')) ?></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="hero_title_fa" rows="3"><?= e(setting('hero_title_fa', '')) ?></textarea></div>
+    </div>
+    <h2 class="settings-group-title" style="margin-top:16px">Subtitle</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><textarea name="hero_subtitle" rows="3"><?= e(setting('hero_subtitle', 'Premium Hajj & Umrah packages...')) ?></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="hero_subtitle_ps" rows="3"><?= e(setting('hero_subtitle_ps', '')) ?></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="hero_subtitle_fa" rows="3"><?= e(setting('hero_subtitle_fa', '')) ?></textarea></div>
     </div>
   </div>
 
   <div class="settings-group">
     <h2 class="settings-group-title">Buttons</h2>
-    <div class="settings-grid">
-      <div class="settings-field"><label>Button 1 Text</label><input type="text" name="hero_btn1_text" value="<?= e(setting('hero_btn1_text', 'Explore Packages')) ?>"></div>
-      <div class="settings-field"><label>Button 1 URL</label><input type="text" name="hero_btn1_url" value="<?= e(setting('hero_btn1_url', '/new/services')) ?>"></div>
-      <div class="settings-field"><label>Button 2 Text</label><input type="text" name="hero_btn2_text" value="<?= e(setting('hero_btn2_text', 'View Destinations')) ?>"></div>
-      <div class="settings-field"><label>Button 2 URL</label><input type="text" name="hero_btn2_url" value="<?= e(setting('hero_btn2_url', '/new/destinations')) ?>"></div>
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Button 1 Text</h4>
+    <div class="locale-row" style="margin-bottom:12px">
+      <div class="locale-input"><label>EN</label><input type="text" name="hero_btn1_text" value="<?= e(setting('hero_btn1_text', 'Explore Packages')) ?>"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="hero_btn1_text_ps" value="<?= e(setting('hero_btn1_text_ps', '')) ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="hero_btn1_text_fa" value="<?= e(setting('hero_btn1_text_fa', '')) ?>"></div>
+    </div>
+    <div class="settings-grid" style="margin-bottom:12px">
+      <div class="settings-field"><label>Button 1 URL</label><input type="text" name="hero_btn1_url" value="<?= e(setting('hero_btn1_url', '#services')) ?>"></div>
+    </div>
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Button 2 Text</h4>
+    <div class="locale-row" style="margin-bottom:12px">
+      <div class="locale-input"><label>EN</label><input type="text" name="hero_btn2_text" value="<?= e(setting('hero_btn2_text', 'View Destinations')) ?>"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="hero_btn2_text_ps" value="<?= e(setting('hero_btn2_text_ps', '')) ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="hero_btn2_text_fa" value="<?= e(setting('hero_btn2_text_fa', '')) ?>"></div>
+    </div>
+    <div class="settings-grid" style="margin-bottom:12px">
+      <div class="settings-field"><label>Button 2 URL</label><input type="text" name="hero_btn2_url" value="<?= e(setting('hero_btn2_url', '#destinations')) ?>"></div>
     </div>
   </div>
 
@@ -45,10 +60,11 @@
           <label>Stat <?= $i ?> Number</label>
           <input type="text" name="hero_stat<?= $i ?>_num" value="<?= e(setting("hero_stat{$i}_num", ['20+','50K+','30+','100%'][$i-1])) ?>">
         </div>
-        <div class="settings-field" style="flex:2">
-          <label>Stat <?= $i ?> Label</label>
-          <input type="text" name="hero_stat<?= $i ?>_label" value="<?= e(setting("hero_stat{$i}_label", ['Years Experience','Happy Pilgrims','Destinations','Visa Success'][$i-1])) ?>">
-        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:end;grid-column:1/-1">
+        <div class="settings-field" style="flex:1"><label>Stat <?= $i ?> Label (EN)</label><input type="text" name="hero_stat<?= $i ?>_label" value="<?= e(setting("hero_stat{$i}_label", ['Years Experience','Happy Pilgrims','Destinations','Visa Success'][$i-1])) ?>"></div>
+        <div class="settings-field" style="flex:1"><label>(پښتو)</label><input type="text" name="hero_stat<?= $i ?>_label_ps" value="<?= e(setting("hero_stat{$i}_label_ps", '')) ?>"></div>
+        <div class="settings-field" style="flex:1"><label>(دری)</label><input type="text" name="hero_stat<?= $i ?>_label_fa" value="<?= e(setting("hero_stat{$i}_label_fa", '')) ?>"></div>
       </div>
       <?php endfor; ?>
     </div>
@@ -87,17 +103,21 @@
   <?php endif; ?>
 
   <h3 style="font-size:14px;color:var(--navy);margin-bottom:12px">Add New Slide</h3>
-  <form method="post" action="<?= base_url('admin/hero/slides/add') ?>" enctype="multipart/form-data" style="display:flex;gap:12px;align-items:end;flex-wrap:wrap">
+  <form method="post" action="<?= base_url('admin/hero/slides/add') ?>" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:12px;max-width:500px">
     <?= csrf_field() ?>
-    <div class="settings-field" style="flex:1;min-width:200px">
-      <label>Label</label>
-      <input type="text" name="label" placeholder="e.g. Dubai" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
+    <h4 style="font-size:13px;margin:0;color:var(--navy)">Label</h4>
+    <div class="locale-row" style="margin-bottom:0">
+      <div class="locale-input"><label>EN</label><input type="text" name="label_en" placeholder="e.g. Dubai"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="label_ps"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="label_fa"></div>
     </div>
-    <div class="settings-field" style="flex:1;min-width:200px">
-      <label>Image</label>
-      <input type="file" name="image" accept="image/png,image/jpeg,image/webp" required style="font-size:13px">
+    <div style="display:flex;gap:12px;align-items:end">
+      <div class="settings-field" style="flex:1">
+        <label>Image</label>
+        <input type="file" name="image" accept="image/png,image/jpeg,image/webp" required>
+      </div>
+      <button type="submit" class="btn-new"><i class="fas fa-plus"></i> Add Slide</button>
     </div>
-    <button type="submit" class="btn-new"><i class="fas fa-plus"></i> Add Slide</button>
   </form>
 </div>
 

@@ -19,30 +19,30 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4>Services</h4>
+      <h4><?= e(setting('footer_services_heading', 'Services')) ?></h4>
       <ul>
-        <li><a href="<?= base_url('packages') ?>">All Packages</a></li>
-        <li><a href="<?= base_url('packages?category=umrah') ?>">Umrah Packages</a></li>
-        <li><a href="<?= base_url('packages?category=hajj') ?>">Hajj Packages</a></li>
-        <li><a href="<?= base_url('packages?category=flight') ?>">Flight Booking</a></li>
-        <li><a href="<?= base_url('packages?category=visa') ?>">Visa Services</a></li>
-        <li><a href="<?= base_url('packages?category=hotel') ?>">Hotel Reservations</a></li>
+        <li><a href="<?= base_url('packages') ?>"><?= __('footer.all_packages') ?></a></li>
+        <li><a href="<?= base_url('packages?category=umrah') ?>"><?= __('footer.umrah_packages') ?></a></li>
+        <li><a href="<?= base_url('packages?category=hajj') ?>"><?= __('footer.hajj_packages') ?></a></li>
+        <li><a href="<?= base_url('packages?category=flight') ?>"><?= __('footer.flight_booking') ?></a></li>
+        <li><a href="<?= base_url('packages?category=visa') ?>"><?= __('footer.visa_services') ?></a></li>
+        <li><a href="<?= base_url('packages?category=hotel') ?>"><?= __('footer.hotel_reservations') ?></a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Destinations</h4>
+      <h4><?= e(setting('footer_destinations_heading', 'Destinations')) ?></h4>
       <ul>
-        <li><a href="<?= base_url('destinations') ?>">Mecca & Medina</a></li>
-        <li><a href="<?= base_url('destinations') ?>">Dubai</a></li>
-        <li><a href="<?= base_url('destinations') ?>">Istanbul</a></li>
-        <li><a href="<?= base_url('destinations') ?>">Malaysia</a></li>
-        <li><a href="<?= base_url('blog') ?>">Our Blog</a></li>
-        <li><a href="<?= base_url('about') ?>">About Us</a></li>
+        <li><a href="<?= base_url('packages') ?>"><?= __('footer.mecca_medina') ?></a></li>
+        <li><a href="<?= base_url('packages') ?>"><?= __('footer.dubai') ?></a></li>
+        <li><a href="<?= base_url('packages') ?>"><?= __('footer.istanbul') ?></a></li>
+        <li><a href="<?= base_url('packages') ?>"><?= __('footer.malaysia') ?></a></li>
+        <li><a href="<?= base_url('blog') ?>"><?= __('footer.our_blog') ?></a></li>
+        <li><a href="<?= base_url('about') ?>"><?= __('footer.about_us') ?></a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; <?= date('Y') ?> <?= e(setting('footer_copyright', 'Al Moqadas Travel Agency')) ?> &middot; All Rights Reserved</span>
-    <span>Certified Hajj &amp; Umrah Operator</span>
+    <span>&copy; <?= date('Y') ?> <?= e(setting('footer_copyright', 'Al Moqadas Travel Agency')) ?> &middot; <?= __('footer.all_rights') ?></span>
+    <span><?= setting('footer_tagline', 'Certified Hajj &amp; Umrah Operator') ?></span>
   </div>
 </footer>

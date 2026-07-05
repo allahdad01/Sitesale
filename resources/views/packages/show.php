@@ -3,8 +3,8 @@
     preg_match_all('/<li>(.*?)<\/li>/s', $desc, $matches);
     return $matches[1] ?? [];
   };
-  $inclusions = $pkgInclusions($pkg['description']);
-  $descText = strip_tags($pkg['description'], '<p><br><strong><em><b><i><u><a><ul><ol><li><h2><h3><h4><blockquote>');
+  $inclusions = $pkgInclusions(locale_val($pkg, 'description'));
+  $descText = strip_tags(locale_val($pkg, 'description'), '<p><br><strong><em><b><i><u><a><ul><ol><li><h2><h3><h4><blockquote>');
 ?>
 <section class="page-hero">
   <div class="hero-ring hero-ring-1"></div>
@@ -13,16 +13,16 @@
 
   <div class="hero-badge"><i class="fas fa-mosque"></i> <?= e(ucfirst($pkg['category'])) ?></div>
 
-  <h1><?= e($pkg['title']) ?></h1>
+  <h1><?= locale_val_e($pkg, 'title') ?></h1>
 
-  <p class="hero-sub"><?= e(mb_substr(strip_tags($pkg['description']), 0, 160)) ?>...</p>
+  <p class="hero-sub"><?= e(mb_substr(strip_tags(locale_val($pkg, 'description')), 0, 160)) ?>...</p>
 
   <div class="breadcrumb">
-    <span><a href="<?= base_url('') ?>" style="color:inherit;text-decoration:none;">Home</a></span>
+    <span><a href="<?= base_url('') ?>" style="color:inherit;text-decoration:none;"><?= __('contact_page.breadcrumb_home') ?></a></span>
     <span>/</span>
-    <span><a href="<?= base_url('packages') ?>" style="color:inherit;text-decoration:none;">Packages</a></span>
+    <span><a href="<?= base_url('packages') ?>" style="color:inherit;text-decoration:none;"><?= __('nav.packages') ?></a></span>
     <span>/</span>
-    <span class="current"><?= e($pkg['title']) ?></span>
+    <span class="current"><?= locale_val_e($pkg, 'title') ?></span>
   </div>
 </section>
 
@@ -31,7 +31,7 @@
     <div class="package-detail-main">
       <?php if ($pkg['image']): ?>
       <div class="package-detail-image">
-        <img src="<?= asset('storage/uploads/' . e($pkg['image'])) ?>" alt="<?= e($pkg['title']) ?>">
+        <img src="<?= asset('storage/uploads/' . e($pkg['image'])) ?>" alt="<?= locale_val_e($pkg, 'title') ?>">
       </div>
       <?php endif; ?>
 
@@ -46,7 +46,7 @@
       <div class="pkg-sidebar-card">
         <div class="pkg-sidebar-price">
           $<?= number_format($pkg['price']) ?>
-          <span>per person</span>
+          <span><?= __('package.per_person') ?></span>
         </div>
 
         <div class="pkg-sidebar-stats">
@@ -54,35 +54,35 @@
             <div class="pkg-stat-icon"><i class="fas fa-clock"></i></div>
             <div>
               <div class="pkg-stat-value"><?= (int) $pkg['duration_days'] ?> <?= (int) $pkg['duration_days'] === 1 ? 'day' : 'days' ?></div>
-              <div class="pkg-stat-label">Duration</div>
+              <div class="pkg-stat-label"><?= __('package.duration') ?></div>
             </div>
           </div>
           <div class="pkg-stat">
             <div class="pkg-stat-icon"><i class="fas fa-users"></i></div>
             <div>
               <div class="pkg-stat-value"><?= (int) $pkg['max_people'] ?> pax</div>
-              <div class="pkg-stat-label">Max Group</div>
+              <div class="pkg-stat-label"><?= __('package.max_people') ?></div>
             </div>
           </div>
           <div class="pkg-stat">
             <div class="pkg-stat-icon"><i class="fas fa-location-dot"></i></div>
             <div>
-              <div class="pkg-stat-value"><?= e($pkg['destination'] ?: '—') ?></div>
-              <div class="pkg-stat-label">Destination</div>
+              <div class="pkg-stat-value"><?= locale_val_e($pkg, 'destination', '—') ?></div>
+              <div class="pkg-stat-label"><?= __('package.destination') ?></div>
             </div>
           </div>
           <div class="pkg-stat">
             <div class="pkg-stat-icon"><i class="fas fa-tag"></i></div>
             <div>
               <div class="pkg-stat-value"><?= e(ucfirst($pkg['category'])) ?></div>
-              <div class="pkg-stat-label">Category</div>
+              <div class="pkg-stat-label"><?= __('packages.filter_all') ?></div>
             </div>
           </div>
         </div>
 
         <?php if (!empty($inclusions)): ?>
         <div class="pkg-sidebar-inclusions">
-          <h4>What's Included</h4>
+          <h4><?= __('package.inclusions') ?></h4>
           <ul>
             <?php foreach ($inclusions as $inc): ?>
               <li><?= e(strip_tags($inc)) ?></li>
@@ -92,16 +92,16 @@
         <?php endif; ?>
 
         <a href="<?= base_url('packages/' . e($pkg['slug']) . '/book') ?>" class="btn-primary" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;text-align:center;">
-          Book This Package <i class="fas fa-arrow-right"></i>
+          <?= __('package.book') ?> <i class="fas fa-arrow-right"></i>
         </a>
 
         <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:12px;">
-          <i class="fas fa-shield-halved"></i> Secure booking · No hidden fees
+          <i class="fas fa-shield-halved"></i> <?= __('package.secure_badge') ?>
         </p>
       </div>
 
       <a href="<?= base_url('packages') ?>" class="pkg-back-link">
-        <i class="fas fa-arrow-left"></i> Back to all packages
+        <i class="fas fa-arrow-left"></i> <?= __('package.back') ?>
       </a>
     </aside>
   </div>

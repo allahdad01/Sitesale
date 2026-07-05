@@ -31,13 +31,22 @@ class TimelineItem
     {
         $pdo = Database::connect();
         $stmt = $pdo->prepare(
-            "INSERT INTO timeline_items (year, title, text, sort_order, active)
-             VALUES (:year, :title, :text, :sort_order, :active)"
+            "INSERT INTO timeline_items (year, year_en, year_ps, year_fa, title, title_en, title_ps, title_fa, text, text_en, text_ps, text_fa, sort_order, active)
+             VALUES (:year, :year_en, :year_ps, :year_fa, :title, :title_en, :title_ps, :title_fa, :text, :text_en, :text_ps, :text_fa, :sort_order, :active)"
         );
         $stmt->execute([
-            'year'       => $data['year'] ?? '',
-            'title'      => $data['title'] ?? '',
-            'text'       => $data['text'] ?? '',
+            'year'    => $data['year'] ?? '',
+            'year_en' => $data['year_en'] ?? $data['year'] ?? '',
+            'year_ps' => $data['year_ps'] ?? '',
+            'year_fa' => $data['year_fa'] ?? '',
+            'title'   => $data['title'] ?? '',
+            'title_en' => $data['title_en'] ?? $data['title'] ?? '',
+            'title_ps' => $data['title_ps'] ?? '',
+            'title_fa' => $data['title_fa'] ?? '',
+            'text'    => $data['text'] ?? '',
+            'text_en' => $data['text_en'] ?? $data['text'] ?? '',
+            'text_ps' => $data['text_ps'] ?? '',
+            'text_fa' => $data['text_fa'] ?? '',
             'sort_order' => (int) ($data['sort_order'] ?? 0),
             'active'     => (int) ($data['active'] ?? 1),
         ]);
@@ -49,7 +58,7 @@ class TimelineItem
         $pdo = Database::connect();
         $fields = [];
         $params = ['id' => $id];
-        foreach (['year', 'title', 'text', 'sort_order', 'active'] as $c) {
+        foreach (['year', 'year_en', 'year_ps', 'year_fa', 'title', 'title_en', 'title_ps', 'title_fa', 'text', 'text_en', 'text_ps', 'text_fa', 'sort_order', 'active'] as $c) {
             if (array_key_exists($c, $data)) {
                 $fields[] = "`$c` = :$c";
                 $params[$c] = $data[$c];

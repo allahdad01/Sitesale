@@ -2,8 +2,6 @@
   $pages = [
     'home'         => base_url(),
     'packages'     => base_url('packages'),
-    'services'     => base_url('services'),
-    'destinations' => base_url('destinations'),
     'blog'         => base_url('blog'),
     'about'        => base_url('about'),
   ];
@@ -23,13 +21,20 @@ function isActive(string $page, string $current): string {
       <h2><?= e(setting('logo_text', 'Al Moqadas')) ?></h2>
     </a>
   </div>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+  <button class="nav-toggle" id="navToggle" aria-label="<?= __('nav.toggle_menu') ?>" aria-expanded="false">
     <i class="fas fa-bars"></i>
   </button>
   <ul class="nav-links" id="navLinks">
     <?php foreach ($pages as $page => $path): ?>
-      <li><a href="<?= e($path) ?>" class="<?= isActive($page, $current) ?>"><?= e(ucfirst($page)) ?></a></li>
+      <li><a href="<?= e($path) ?>" class="<?= isActive($page, $current) ?>"><?= __('nav.' . $page) ?></a></li>
     <?php endforeach; ?>
-    <li><a href="<?= base_url('packages') ?>" class="nav-cta <?= isActive('packages', $current) ?>">Book Now</a></li>
+    <li class="nav-lang-switcher">
+      <select id="langSelect" onchange="window.location.href=this.value" aria-label="Language">
+        <option value="<?= base_url('lang/en') ?>" <?= ($_SESSION['_locale'] ?? 'en') === 'en' ? 'selected' : '' ?>>English</option>
+        <option value="<?= base_url('lang/ps') ?>" <?= ($_SESSION['_locale'] ?? '') === 'ps' ? 'selected' : '' ?>>پښتو</option>
+        <option value="<?= base_url('lang/fa') ?>" <?= ($_SESSION['_locale'] ?? '') === 'fa' ? 'selected' : '' ?>>دری</option>
+      </select>
+    </li>
+    <li><a href="<?= base_url('packages') ?>" class="nav-cta <?= isActive('packages', $current) ?>"><?= __('nav.book_now') ?></a></li>
   </ul>
 </nav>

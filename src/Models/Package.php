@@ -63,21 +63,30 @@ class Package
     {
         $pdo = Database::connect();
         $stmt = $pdo->prepare(
-            "INSERT INTO packages (title, slug, description, image, price, duration_days, max_people, category, destination, featured, active)
-             VALUES (:title, :slug, :description, :image, :price, :duration_days, :max_people, :category, :destination, :featured, :active)"
+            "INSERT INTO packages (title, title_en, title_ps, title_fa, slug, description, description_en, description_ps, description_fa, image, price, duration_days, max_people, category, destination, destination_en, destination_ps, destination_fa, featured, active)
+             VALUES (:title, :title_en, :title_ps, :title_fa, :slug, :description, :description_en, :description_ps, :description_fa, :image, :price, :duration_days, :max_people, :category, :destination, :destination_en, :destination_ps, :destination_fa, :featured, :active)"
         );
         $stmt->execute([
-            'title'         => $data['title'],
-            'slug'          => $data['slug'] ?? self::slugify($data['title']),
-            'description'   => $data['description'] ?? '',
-            'image'         => $data['image'] ?? null,
-            'price'         => $data['price'] ?? 0,
-            'duration_days' => $data['duration_days'] ?? 1,
-            'max_people'    => $data['max_people'] ?? 1,
-            'category'      => $data['category'] ?? 'tour',
-            'destination'   => $data['destination'] ?? null,
-            'featured'      => $data['featured'] ?? 0,
-            'active'        => $data['active'] ?? 1,
+            'title'           => $data['title'],
+            'title_en'        => $data['title_en'] ?? $data['title'],
+            'title_ps'        => $data['title_ps'] ?? '',
+            'title_fa'        => $data['title_fa'] ?? '',
+            'slug'            => $data['slug'] ?? self::slugify($data['title']),
+            'description'     => $data['description'] ?? '',
+            'description_en'  => $data['description_en'] ?? $data['description'] ?? '',
+            'description_ps'  => $data['description_ps'] ?? '',
+            'description_fa'  => $data['description_fa'] ?? '',
+            'image'           => $data['image'] ?? null,
+            'price'           => $data['price'] ?? 0,
+            'duration_days'   => $data['duration_days'] ?? 1,
+            'max_people'      => $data['max_people'] ?? 1,
+            'category'        => $data['category'] ?? 'tour',
+            'destination'     => $data['destination'] ?? null,
+            'destination_en'  => $data['destination_en'] ?? $data['destination'] ?? '',
+            'destination_ps'  => $data['destination_ps'] ?? '',
+            'destination_fa'  => $data['destination_fa'] ?? '',
+            'featured'        => $data['featured'] ?? 0,
+            'active'          => $data['active'] ?? 1,
         ]);
         return (int) $pdo->lastInsertId();
     }
@@ -87,7 +96,7 @@ class Package
         $pdo = Database::connect();
         $fields = [];
         $params = ['id' => $id];
-        $cols = ['title', 'slug', 'description', 'image', 'price', 'duration_days', 'max_people', 'category', 'destination', 'featured', 'active'];
+        $cols = ['title', 'title_en', 'title_ps', 'title_fa', 'slug', 'description', 'description_en', 'description_ps', 'description_fa', 'image', 'price', 'duration_days', 'max_people', 'category', 'destination', 'destination_en', 'destination_ps', 'destination_fa', 'featured', 'active'];
 
         foreach ($cols as $c) {
             if (array_key_exists($c, $data)) {

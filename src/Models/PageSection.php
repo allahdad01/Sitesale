@@ -47,15 +47,21 @@ class PageSection
         }
 
         $stmt = $pdo->prepare(
-            "INSERT INTO page_sections (page, section_key, label, type, content, sort_order, active)
-             VALUES (:page, :section_key, :label, :type, :content, :sort_order, :active)"
+            "INSERT INTO page_sections (page, section_key, label, label_en, label_ps, label_fa, type, content, content_en, content_ps, content_fa, sort_order, active)
+             VALUES (:page, :section_key, :label, :label_en, :label_ps, :label_fa, :type, :content, :content_en, :content_ps, :content_fa, :sort_order, :active)"
         );
         $stmt->execute([
             'page'        => $data['page'] ?? 'home',
             'section_key' => $data['section_key'],
             'label'       => $data['label'] ?? '',
+            'label_en'    => $data['label_en'] ?? $data['label'] ?? '',
+            'label_ps'    => $data['label_ps'] ?? '',
+            'label_fa'    => $data['label_fa'] ?? '',
             'type'        => $data['type'] ?? 'custom_html',
             'content'     => $data['content'] ?? '',
+            'content_en'  => $data['content_en'] ?? $data['content'] ?? '',
+            'content_ps'  => $data['content_ps'] ?? '',
+            'content_fa'  => $data['content_fa'] ?? '',
             'sort_order'  => $sortOrder,
             'active'      => $data['active'] ?? 1,
         ]);
@@ -68,7 +74,7 @@ class PageSection
         $fields = [];
         $params = ['id' => $id];
 
-        foreach (['label', 'type', 'content', 'section_key', 'active', 'sort_order'] as $col) {
+        foreach (['label', 'label_en', 'label_ps', 'label_fa', 'type', 'content', 'content_en', 'content_ps', 'content_fa', 'section_key', 'active', 'sort_order'] as $col) {
             if (array_key_exists($col, $data)) {
                 $fields[] = "`$col` = :$col";
                 $params[$col] = $data[$col];

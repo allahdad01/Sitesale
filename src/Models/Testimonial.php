@@ -31,13 +31,22 @@ class Testimonial
     {
         $pdo = Database::connect();
         $stmt = $pdo->prepare(
-            "INSERT INTO testimonials (name, position, content, rating, avatar, sort_order, active)
-             VALUES (:name, :position, :content, :rating, :avatar, :sort_order, :active)"
+            "INSERT INTO testimonials (name, name_en, name_ps, name_fa, position, position_en, position_ps, position_fa, content, content_en, content_ps, content_fa, rating, avatar, sort_order, active)
+             VALUES (:name, :name_en, :name_ps, :name_fa, :position, :position_en, :position_ps, :position_fa, :content, :content_en, :content_ps, :content_fa, :rating, :avatar, :sort_order, :active)"
         );
         $stmt->execute([
-            'name'       => $data['name'] ?? '',
-            'position'   => $data['position'] ?? '',
-            'content'    => $data['content'] ?? '',
+            'name'        => $data['name'] ?? '',
+            'name_en'     => $data['name_en'] ?? $data['name'] ?? '',
+            'name_ps'     => $data['name_ps'] ?? '',
+            'name_fa'     => $data['name_fa'] ?? '',
+            'position'    => $data['position'] ?? '',
+            'position_en' => $data['position_en'] ?? $data['position'] ?? '',
+            'position_ps' => $data['position_ps'] ?? '',
+            'position_fa' => $data['position_fa'] ?? '',
+            'content'     => $data['content'] ?? '',
+            'content_en'  => $data['content_en'] ?? $data['content'] ?? '',
+            'content_ps'  => $data['content_ps'] ?? '',
+            'content_fa'  => $data['content_fa'] ?? '',
             'rating'     => (int) ($data['rating'] ?? 5),
             'avatar'     => $data['avatar'] ?? '',
             'sort_order' => (int) ($data['sort_order'] ?? 0),
@@ -51,7 +60,7 @@ class Testimonial
         $pdo = Database::connect();
         $fields = [];
         $params = ['id' => $id];
-        foreach (['name', 'position', 'content', 'rating', 'avatar', 'sort_order', 'active'] as $c) {
+        foreach (['name', 'name_en', 'name_ps', 'name_fa', 'position', 'position_en', 'position_ps', 'position_fa', 'content', 'content_en', 'content_ps', 'content_fa', 'rating', 'avatar', 'sort_order', 'active'] as $c) {
             if (array_key_exists($c, $data)) {
                 $fields[] = "`$c` = :$c";
                 $params[$c] = $data[$c];

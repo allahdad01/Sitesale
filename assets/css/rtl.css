@@ -1,0 +1,305 @@
+/* RTL Support for Pashto and Dari */
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Navbar */
+.nav-links {
+  padding-right: 0;
+}
+.nav-links li:first-child {
+  margin-right: 0;
+  margin-left: 24px;
+}
+.nav-logo a {
+  flex-direction: row;
+}
+
+/* Hero */
+.hero-buttons .btn-primary,
+.hero-buttons .btn-outline {
+  flex-direction: row-reverse;
+}
+
+/* Services */
+.services-header {
+  text-align: right;
+}
+.service-content {
+  text-align: right;
+}
+.service-content .service-btn i {
+  margin-right: 6px;
+  margin-left: 0;
+  transform: scaleX(-1);
+}
+
+/* Packages */
+.packages-header {
+  text-align: right;
+}
+.package-meta-row {
+  direction: rtl;
+}
+.package-footer {
+  flex-direction: row-reverse;
+}
+
+.meta-item {
+  text-align: right;
+}
+.dest-filters {
+  justify-content: flex-end !important;
+}
+
+/* Destinations */
+.destinations-left {
+  text-align: right;
+}
+
+/* Contact */
+.contact-info {
+  text-align: right;
+}
+.contact-form {
+  text-align: right;
+}
+.contact-form .btn-primary {
+  gap: 8px;
+}
+.contact-detail {
+  flex-direction: row;
+}
+.contact-detail-icon {
+  margin-left: 16px;
+  margin-right: 0;
+}
+
+/* Form elements */
+.form-group label {
+  text-align: right;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  text-align: right;
+}
+.form-row {
+  flex-direction: row-reverse;
+}
+
+/* Buttons — flex-reverse so icon sits on the right in RTL */
+.btn-primary,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  gap: 8px;
+}
+.btn-view {
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+.btn-login {
+  flex-direction: row-reverse;
+}
+
+
+/* Blog */
+.blog-header {
+  text-align: right;
+}
+.blog-item {
+  flex-direction: row-reverse;
+}
+.blog-item-arch {
+  margin-left: 16px;
+  margin-right: 0;
+}
+.read-link i {
+  margin-right: 6px;
+  margin-left: 0;
+}
+.blog-featured {
+  text-align: right;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  direction: rtl;
+}
+
+/* About page */
+.about-intro-grid {
+  direction: rtl;
+}
+.about-intro-content {
+  text-align: right;
+}
+.about-values-header {
+  text-align: right;
+}
+.about-values-cards {
+  direction: rtl;
+}
+
+/* Testimonials */
+.testimonials-title,
+.testimonials-subtitle {
+  text-align: center;
+}
+.testimonials-card {
+  text-align: right;
+}
+
+/* Package detail */
+.package-detail-layout {
+  direction: rtl;
+}
+.pkg-stat {
+  flex-direction: row-reverse;
+}
+.pkg-stat-icon {
+  margin-left: 14px;
+  margin-right: 0;
+}
+.pkg-back-link i {
+  transform: scaleX(-1);
+  margin-left: 8px;
+  margin-right: 0;
+}
+.pkg-sidebar-inclusions li {
+  padding-right: 22px;
+  padding-left: 0;
+}
+.pkg-sidebar-inclusions li::before {
+  left: auto;
+  right: 0;
+}
+
+/* Booking */
+.contact-side {
+  text-align: right;
+}
+.contact-side-row {
+  flex-direction: row;
+}
+.contact-side-icon {
+  margin-left: 16px;
+  margin-right: 0;
+}
+
+/* Contact page */
+.contact-main {
+  direction: rtl;
+}
+.contact-side-header {
+  text-align: right;
+}
+.contact-side-hours .hours-row {
+  flex-direction: row-reverse;
+}
+.contact-form-card-header {
+  text-align: right;
+}
+
+/* FAQ */
+.faq {
+  text-align: right;
+}
+.faq-question {
+  text-align: right;
+  flex-direction: row-reverse;
+}
+.faq-question i {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* Article */
+.article-main {
+  text-align: right;
+}
+.article-breadcrumb i {
+  margin-left: 6px;
+  margin-right: 0;
+  transform: scaleX(-1);
+}
+.article-meta-bar {
+  flex-direction: row-reverse;
+}
+.article-share {
+  flex-direction: row-reverse;
+}
+.article-footer-bar {
+  flex-direction: row-reverse;
+}
+.article-nav-back i {
+  transform: scaleX(-1);
+  margin-left: 6px;
+  margin-right: 0;
+}
+.sidebar-post {
+  flex-direction: row-reverse;
+}
+
+/* Package inclusions (homepage & index) */
+.package-inclusions li {
+  padding-right: 20px;
+  padding-left: 0;
+}
+.package-inclusions li::before {
+  left: auto;
+  right: 0;
+}
+
+/* Awards section */
+.awards {
+  text-align: center;
+}
+
+
+
+/* RTL-specific font for Pashto/Dari */
+body[dir="rtl"] {
+  font-family: 'Inter', 'Tahoma', 'Arial', sans-serif;
+}
+body[dir="rtl"] h1, body[dir="rtl"] h2, body[dir="rtl"] h3, body[dir="rtl"] h4, body[dir="rtl"] h5 {
+  font-family: 'Amiri', 'Tahoma', serif;
+}
+
+/* ── RTL Icon fixes ── */
+
+/* Flip directional arrows */
+.fa-arrow-right, .fa-arrow-left,
+.fa-chevron-right, .fa-chevron-left,
+.fa-angle-right, .fa-angle-left,
+.fa-caret-right, .fa-caret-left,
+.fa-long-arrow-alt-right, .fa-long-arrow-alt-left,
+.fa-chevron-circle-right, .fa-chevron-circle-left,
+.fa-arrow-circle-right, .fa-arrow-circle-left {
+  transform: scaleX(-1);
+}
+
+/* Rewind/fast-forward icons */
+.fa-undo, .fa-redo,
+.fa-step-backward, .fa-step-forward,
+.fa-backward, .fa-forward,
+.fa-reply, .fa-share {
+  transform: scaleX(-1);
+}
+
+/* Icons before text in badges/breadcrumbs — keep spacing */
+.breadcrumb i:first-child,
+.pkg-back-link i,
+.faq-question i,
+.service-btn i,
+.article-breadcrumb i {
+  margin-left: 6px;
+  margin-right: 0;
+}
+
+/* Specific overrides where icons must NOT flip */
+.nav-toggle i { transform: none; }

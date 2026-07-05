@@ -41,13 +41,22 @@ class ServiceController
         }
 
         Service::create([
-            'title'       => $title,
-            'tag'         => $tag,
-            'description' => $description,
-            'image'       => $image,
-            'link'        => $link,
-            'sort_order'  => Service::maxSortOrder() + 1,
-            'active'      => 1,
+            'title'          => $title,
+            'title_en'       => $request->post('title_en', ''),
+            'title_ps'       => $request->post('title_ps', ''),
+            'title_fa'       => $request->post('title_fa', ''),
+            'tag'            => $tag,
+            'tag_en'         => $request->post('tag_en', ''),
+            'tag_ps'         => $request->post('tag_ps', ''),
+            'tag_fa'         => $request->post('tag_fa', ''),
+            'description'    => $description,
+            'description_en' => $request->post('description_en', ''),
+            'description_ps' => $request->post('description_ps', ''),
+            'description_fa' => $request->post('description_fa', ''),
+            'image'          => $image,
+            'link'           => $link,
+            'sort_order'     => Service::maxSortOrder() + 1,
+            'active'         => 1,
         ]);
 
         Session::set('_success', 'Service added.');

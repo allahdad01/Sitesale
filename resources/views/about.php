@@ -21,7 +21,7 @@ $ctaBtnUrl = setting('about_cta_btn_url', base_url('contact'));
   <p class="hero-sub"><?= e(setting('about_hero_subtitle', 'For over two decades, Al Moqadas has walked beside thousands of pilgrims and travelers — turning every journey into an experience of faith, comfort, and trust.')) ?></p>
 
   <div class="breadcrumb">
-    <span><?= e(setting('about_breadcrumb_home', 'Home')) ?></span> <span>/</span> <span class="current"><?= e(setting('about_breadcrumb_current', 'About Us')) ?></span>
+    <span><?= e(setting('about_breadcrumb_home', __('about.breadcrumb_home'))) ?></span> <span>/</span> <span class="current"><?= e(setting('about_breadcrumb_current', __('about.breadcrumb_current'))) ?></span>
   </div>
 </section>
 <?php endif; ?>
@@ -31,7 +31,7 @@ $ctaBtnUrl = setting('about_cta_btn_url', base_url('contact'));
   <div class="about-intro-grid">
     <div class="about-intro-image">
       <div class="about-intro-badge"><?= e(setting('about_intro_badge', '20+ Years of Trust')) ?></div>
-      <img src="<?= e($introImgUrl) ?>" alt="About Al Moqadas">
+      <img src="<?= e($introImgUrl) ?>" alt="<?= __('about.breadcrumb_current') ?>">
     </div>
     <div class="about-intro-content">
       <span class="section-tag"><?= e(setting('about_intro_tag', 'Who We Are')) ?></span>
@@ -113,9 +113,9 @@ $ctaBtnUrl = setting('about_cta_btn_url', base_url('contact'));
     <div class="timeline-item">
       <?php if ($side === 'left'): ?>
       <div class="timeline-content">
-        <div class="timeline-year"><?= e($t['year'] ?? '') ?></div>
-        <h4><?= e($t['title'] ?? '') ?></h4>
-        <p><?= e($t['text'] ?? '') ?></p>
+        <div class="timeline-year"><?= locale_val_e($t ?? [], 'year') ?></div>
+        <h4><?= locale_val_e($t ?? [], 'title') ?></h4>
+        <p><?= locale_val_e($t ?? [], 'text') ?></p>
       </div>
       <div class="timeline-dot"></div>
       <div class="timeline-spacer"></div>
@@ -123,9 +123,9 @@ $ctaBtnUrl = setting('about_cta_btn_url', base_url('contact'));
       <div class="timeline-spacer"></div>
       <div class="timeline-dot"></div>
       <div class="timeline-content">
-        <div class="timeline-year"><?= e($t['year'] ?? '') ?></div>
-        <h4><?= e($t['title'] ?? '') ?></h4>
-        <p><?= e($t['text'] ?? '') ?></p>
+        <div class="timeline-year"><?= locale_val_e($t ?? [], 'year') ?></div>
+        <h4><?= locale_val_e($t ?? [], 'title') ?></h4>
+        <p><?= locale_val_e($t ?? [], 'text') ?></p>
       </div>
       <?php endif; ?>
     </div>
@@ -150,20 +150,20 @@ $tMembers = $teamMembers ?? [];
   <?php if ($tLead):
     $img = $tLead['image'] ?? '';
     $initials = '';
-    foreach (explode(' ', $tLead['name'] ?? '') as $p) { if ($p !== '') $initials .= strtoupper(mb_substr($p, 0, 1)); }
+    foreach (explode(' ', locale_val($tLead ?? [], 'name')) as $p) { if ($p !== '') $initials .= strtoupper(mb_substr($p, 0, 1)); }
   ?>
   <div class="about-team-lead">
     <div class="about-team-lead-avatar" style="<?= $img ? 'background:none;box-shadow:none' : '' ?>">
       <?php if ($img): ?>
-        <img src="<?= asset('storage/uploads/team_members/' . e($img)) ?>" alt="<?= e($tLead['name']) ?>" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+        <img src="<?= asset('storage/uploads/team_members/' . e($img)) ?>" alt="<?= locale_val_e($tLead ?? [], 'name') ?>" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
       <?php else: ?>
         <span><?= e($initials ?: '?') ?></span>
       <?php endif; ?>
     </div>
     <div class="about-team-lead-info">
-      <span class="about-team-lead-label"><?= e($tLead['role'] ?? '') ?></span>
-      <h3><?= e($tLead['name'] ?? '') ?></h3>
-      <p><?= e($tLead['bio'] ?? '') ?></p>
+      <span class="about-team-lead-label"><?= locale_val_e($tLead ?? [], 'role') ?></span>
+      <h3><?= locale_val_e($tLead ?? [], 'name') ?></h3>
+      <p><?= locale_val_e($tLead ?? [], 'bio') ?></p>
     </div>
   </div>
   <?php endif; ?>
@@ -173,18 +173,18 @@ $tMembers = $teamMembers ?? [];
     <?php foreach ($tMembers as $m):
       $img = $m['image'] ?? '';
       $initials = '';
-      foreach (explode(' ', $m['name'] ?? '') as $p) { if ($p !== '') $initials .= strtoupper(mb_substr($p, 0, 1)); }
+      foreach (explode(' ', locale_val($m ?? [], 'name')) as $p) { if ($p !== '') $initials .= strtoupper(mb_substr($p, 0, 1)); }
     ?>
     <div class="about-team-card">
       <div class="about-team-avatar" style="<?= $img ? 'background:none;box-shadow:none;overflow:hidden' : '' ?>">
         <?php if ($img): ?>
-          <img src="<?= asset('storage/uploads/team_members/' . e($img)) ?>" alt="<?= e($m['name']) ?>" style="width:100%;height:100%;object-fit:cover">
+          <img src="<?= asset('storage/uploads/team_members/' . e($img)) ?>" alt="<?= locale_val_e($m ?? [], 'name') ?>" style="width:100%;height:100%;object-fit:cover">
         <?php else: ?>
           <span><?= e($initials ?: '?') ?></span>
         <?php endif; ?>
       </div>
-      <h3><?= e($m['name'] ?? '') ?></h3>
-      <span class="about-team-role"><?= e($m['role'] ?? '') ?></span>
+      <h3><?= locale_val_e($m ?? [], 'name') ?></h3>
+      <span class="about-team-role"><?= locale_val_e($m ?? [], 'role') ?></span>
     </div>
     <?php endforeach; ?>
   </div>
@@ -204,7 +204,7 @@ $tMembers = $teamMembers ?? [];
 
 <?php foreach ($customSections ?? [] as $section): ?>
 <section class="custom-section">
-  <?= $section['content'] ?>
+  <?= locale_val($section, 'content') ?>
 </section>
 <?php endforeach; ?>
 

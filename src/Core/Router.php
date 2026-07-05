@@ -71,6 +71,7 @@ class Router
     private function notFound(): void
     {
         http_response_code(404);
-        View::render('errors/404', ['title' => 'Page Not Found'], 'main');
+        $title = function_exists('__') ? __('error.404_title') : 'Page Not Found';
+        View::render('errors/404', ['title' => $title], 'main');
     }
 }

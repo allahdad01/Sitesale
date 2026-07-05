@@ -31,17 +31,26 @@ class Service
     {
         $pdo = Database::connect();
         $stmt = $pdo->prepare(
-            "INSERT INTO services (title, tag, description, image, link, sort_order, active)
-             VALUES (:title, :tag, :description, :image, :link, :sort_order, :active)"
+            "INSERT INTO services (title, title_en, title_ps, title_fa, tag, tag_en, tag_ps, tag_fa, description, description_en, description_ps, description_fa, image, link, sort_order, active)
+             VALUES (:title, :title_en, :title_ps, :title_fa, :tag, :tag_en, :tag_ps, :tag_fa, :description, :description_en, :description_ps, :description_fa, :image, :link, :sort_order, :active)"
         );
         $stmt->execute([
-            'title'       => $data['title'] ?? '',
-            'tag'         => $data['tag'] ?? '',
-            'description' => $data['description'] ?? '',
-            'image'       => $data['image'] ?? '',
-            'link'        => $data['link'] ?? '',
-            'sort_order'  => (int) ($data['sort_order'] ?? 0),
-            'active'      => (int) ($data['active'] ?? 1),
+            'title'         => $data['title'] ?? '',
+            'title_en'      => $data['title_en'] ?? $data['title'] ?? '',
+            'title_ps'      => $data['title_ps'] ?? '',
+            'title_fa'      => $data['title_fa'] ?? '',
+            'tag'           => $data['tag'] ?? '',
+            'tag_en'        => $data['tag_en'] ?? $data['tag'] ?? '',
+            'tag_ps'        => $data['tag_ps'] ?? '',
+            'tag_fa'        => $data['tag_fa'] ?? '',
+            'description'   => $data['description'] ?? '',
+            'description_en' => $data['description_en'] ?? $data['description'] ?? '',
+            'description_ps' => $data['description_ps'] ?? '',
+            'description_fa' => $data['description_fa'] ?? '',
+            'image'         => $data['image'] ?? '',
+            'link'          => $data['link'] ?? '',
+            'sort_order'    => (int) ($data['sort_order'] ?? 0),
+            'active'        => (int) ($data['active'] ?? 1),
         ]);
         return (int) $pdo->lastInsertId();
     }
@@ -51,7 +60,7 @@ class Service
         $pdo = Database::connect();
         $fields = [];
         $params = ['id' => $id];
-        foreach (['title', 'tag', 'description', 'image', 'link', 'sort_order', 'active'] as $c) {
+        foreach (['title', 'title_en', 'title_ps', 'title_fa', 'tag', 'tag_en', 'tag_ps', 'tag_fa', 'description', 'description_en', 'description_ps', 'description_fa', 'image', 'link', 'sort_order', 'active'] as $c) {
             if (array_key_exists($c, $data)) {
                 $fields[] = "`$c` = :$c";
                 $params[$c] = $data[$c];

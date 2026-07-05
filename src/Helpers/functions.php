@@ -95,6 +95,16 @@ if (!function_exists('statusBadge')) {
 if (!function_exists('setting')) {
     function setting(string $key, mixed $default = null): string|null
     {
+        $locale = $_SESSION['_locale'] ?? 'en';
+
+        if ($locale !== 'en') {
+            $localeKey = $key . '_' . $locale;
+            $localeValue = \App\Models\Setting::get($localeKey);
+            if ($localeValue !== null && $localeValue !== '') {
+                return $localeValue;
+            }
+        }
+
         return \App\Models\Setting::get($key, $default);
     }
 }
@@ -105,5 +115,71 @@ if (!function_exists('is_current_path')) {
         $current = $_SERVER['REQUEST_URI'] ?? '/';
         $current = parse_url($current, PHP_URL_PATH);
         return rtrim($current, '/') === rtrim($path, '/');
+    }
+}
+
+if (!function_exists('__')) {
+    function __(string $key, string $default = ''): string
+    {
+        $locale = $_SESSION['_locale'] ?? 'en';
+        static $translations = [];
+
+        if (!isset($translations[$locale])) {
+            $file = __DIR__ . '/../../resources/lang/' . $locale . '.php';
+            if (file_exists($file)) {
+                $translations[$locale] = require $file;
+            } else {
+                $translations[$locale] = [];
+            }
+        }
+
+        return $translations[$locale][$key] ?? ($default ?: $key);
+    }
+}
+
+if (!function_exists('locale_dir')) {
+    function locale_dir(): string
+    {
+        $locale = $_SESSION['_locale'] ?? 'en';
+        return in_array($locale, ['ps', 'fa']) ? 'rtl' : 'ltr';
+    }
+}
+
+if (!function_exists('locale_lang')) {
+    function locale_lang(): string
+    {
+        $locale = $_SESSION['_locale'] ?? 'en';
+        $map = ['en' => 'en', 'ps' => 'ps', 'fa' => 'fa'];
+        return $map[$locale] ?? 'en';
+    }
+}
+
+if (!function_exists('locale_col')) {
+    function locale_col(string $field): string
+    {
+        $locale = $_SESSION['_locale'] ?? 'en';
+        return $field . '_' . $locale;
+    }
+}
+
+if (!function_exists('locale_val')) {
+    function locale_val(array $row, string $field, string $default = ''): string
+    {
+        $locale = $_SESSION['_locale'] ?? 'en';
+        $localeCol = $field . '_' . $locale;
+        if (isset($row[$localeCol]) && $row[$localeCol] !== '' && $row[$localeCol] !== null) {
+            return $row[$localeCol];
+        }
+        if (isset($row[$field]) && $row[$field] !== '' && $row[$field] !== null) {
+            return $row[$field];
+        }
+        return $default;
+    }
+}
+
+if (!function_exists('locale_val_e')) {
+    function locale_val_e(array $row, string $field, string $default = ''): string
+    {
+        return e(locale_val($row, $field, $default));
     }
 }

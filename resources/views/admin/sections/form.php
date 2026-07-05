@@ -46,10 +46,20 @@
   </div>
 
   <div class="settings-group">
-    <h2 class="settings-group-title">Content</h2>
-    <div class="settings-field" style="max-width:100%">
-      <label for="content">HTML Content <small>(for custom sections)</small></label>
-      <textarea id="content" name="content" rows="12" style="width:100%;font-family:'Courier New',monospace;font-size:13px;padding:12px;border:1px solid var(--border);border-radius:8px;outline:none"><?= e($sec['content'] ?? '') ?></textarea>
+    <h2 class="settings-group-title">Label (admin name)</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><input type="text" name="label_en" value="<?= e($sec['label_en'] ?? $sec['label'] ?? '') ?>" required></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="label_ps" value="<?= e($sec['label_ps'] ?? '') ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="label_fa" value="<?= e($sec['label_fa'] ?? '') ?>"></div>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <h2 class="settings-group-title">HTML Content <small>(for custom sections)</small></h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><textarea name="content_en" rows="12"><?= e($sec['content_en'] ?? $sec['content'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="content_ps" rows="12"><?= e($sec['content_ps'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="content_fa" rows="12"><?= e($sec['content_fa'] ?? '') ?></textarea></div>
     </div>
   </div>
 

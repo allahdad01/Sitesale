@@ -45,13 +45,22 @@ class TeamMember
     {
         $pdo = Database::connect();
         $stmt = $pdo->prepare(
-            "INSERT INTO team_members (name, role, bio, image, type, sort_order, active)
-             VALUES (:name, :role, :bio, :image, :type, :sort_order, :active)"
+            "INSERT INTO team_members (name, name_en, name_ps, name_fa, role, role_en, role_ps, role_fa, bio, bio_en, bio_ps, bio_fa, image, type, sort_order, active)
+             VALUES (:name, :name_en, :name_ps, :name_fa, :role, :role_en, :role_ps, :role_fa, :bio, :bio_en, :bio_ps, :bio_fa, :image, :type, :sort_order, :active)"
         );
         $stmt->execute([
-            'name'       => $data['name'] ?? '',
-            'role'       => $data['role'] ?? '',
-            'bio'        => $data['bio'] ?? '',
+            'name'    => $data['name'] ?? '',
+            'name_en' => $data['name_en'] ?? $data['name'] ?? '',
+            'name_ps' => $data['name_ps'] ?? '',
+            'name_fa' => $data['name_fa'] ?? '',
+            'role'    => $data['role'] ?? '',
+            'role_en' => $data['role_en'] ?? $data['role'] ?? '',
+            'role_ps' => $data['role_ps'] ?? '',
+            'role_fa' => $data['role_fa'] ?? '',
+            'bio'     => $data['bio'] ?? '',
+            'bio_en'  => $data['bio_en'] ?? $data['bio'] ?? '',
+            'bio_ps'  => $data['bio_ps'] ?? '',
+            'bio_fa'  => $data['bio_fa'] ?? '',
             'image'      => $data['image'] ?? '',
             'type'       => $data['type'] ?? 'member',
             'sort_order' => (int) ($data['sort_order'] ?? 0),
@@ -65,7 +74,7 @@ class TeamMember
         $pdo = Database::connect();
         $fields = [];
         $params = ['id' => $id];
-        foreach (['name', 'role', 'bio', 'image', 'type', 'sort_order', 'active'] as $c) {
+        foreach (['name', 'name_en', 'name_ps', 'name_fa', 'role', 'role_en', 'role_ps', 'role_fa', 'bio', 'bio_en', 'bio_ps', 'bio_fa', 'image', 'type', 'sort_order', 'active'] as $c) {
             if (array_key_exists($c, $data)) {
                 $fields[] = "`$c` = :$c";
                 $params[$c] = $data[$c];

@@ -23,8 +23,14 @@ class AwardsController
     public function update(Request $request): void
     {
         Setting::set('awards_badge', $request->post('awards_badge', ''));
+        Setting::set('awards_badge_ps', $request->post('awards_badge_ps', ''));
+        Setting::set('awards_badge_fa', $request->post('awards_badge_fa', ''));
         Setting::set('awards_title', $request->post('awards_title', ''));
+        Setting::set('awards_title_ps', $request->post('awards_title_ps', ''));
+        Setting::set('awards_title_fa', $request->post('awards_title_fa', ''));
         Setting::set('awards_subtitle', $request->post('awards_subtitle', ''));
+        Setting::set('awards_subtitle_ps', $request->post('awards_subtitle_ps', ''));
+        Setting::set('awards_subtitle_fa', $request->post('awards_subtitle_fa', ''));
         Setting::flushCache();
         Session::set('_success', 'Awards text updated.');
         Response::redirect(base_url('admin/awards'));
@@ -53,6 +59,9 @@ class AwardsController
         Award::create([
             'image'      => $image,
             'label'      => $label,
+            'label_en'   => $request->post('label_en', ''),
+            'label_ps'   => $request->post('label_ps', ''),
+            'label_fa'   => $request->post('label_fa', ''),
             'sort_order' => Award::maxSortOrder() + 1,
             'active'     => 1,
         ]);

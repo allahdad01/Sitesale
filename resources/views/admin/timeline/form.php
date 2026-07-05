@@ -12,19 +12,23 @@
 
   <div class="settings-group">
     <h2 class="settings-group-title">Milestone Details</h2>
-    <div class="settings-grid" style="margin-bottom:12px">
-      <div class="settings-field">
-        <label>Year</label>
-        <input type="text" name="year" value="<?= e($i['year'] ?? '') ?>" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
-      </div>
-      <div class="settings-field">
-        <label>Title</label>
-        <input type="text" name="title" value="<?= e($i['title'] ?? '') ?>" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
-      </div>
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Year</h4>
+    <div class="locale-row" style="margin-bottom:12px">
+      <div class="locale-input"><label>EN</label><input type="text" name="year_en" value="<?= e($i['year_en'] ?? $i['year'] ?? '') ?>"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="year_ps" value="<?= e($i['year_ps'] ?? '') ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="year_fa" value="<?= e($i['year_fa'] ?? '') ?>"></div>
     </div>
-    <div class="settings-field" style="margin-bottom:12px">
-      <label>Description</label>
-      <textarea name="text" rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;resize:vertical"><?= e($i['text'] ?? '') ?></textarea>
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Title</h4>
+    <div class="locale-row" style="margin-bottom:12px">
+      <div class="locale-input"><label>EN</label><input type="text" name="title_en" value="<?= e($i['title_en'] ?? $i['title'] ?? '') ?>"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="title_ps" value="<?= e($i['title_ps'] ?? '') ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="title_fa" value="<?= e($i['title_fa'] ?? '') ?>"></div>
+    </div>
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Description</h4>
+    <div class="locale-row" style="margin-bottom:12px">
+      <div class="locale-input"><label>EN</label><textarea name="text_en" rows="4"><?= e($i['text_en'] ?? $i['text'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="text_ps" rows="4"><?= e($i['text_ps'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="text_fa" rows="4"><?= e($i['text_fa'] ?? '') ?></textarea></div>
     </div>
     <button type="submit" class="btn-new"><i class="fas fa-save"></i> Update Milestone</button>
   </div>

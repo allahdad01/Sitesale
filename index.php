@@ -9,8 +9,6 @@ use App\Middleware\CsrfMiddleware;
 use App\Middleware\RateLimitMiddleware;
 use App\Controllers\HomeController;
 use App\Controllers\AboutController;
-use App\Controllers\ServicesController;
-use App\Controllers\DestinationsController;
 use App\Controllers\ContactController;
 use App\Controllers\AdminController;
 use App\Controllers\Admin\SettingsController;
@@ -27,8 +25,12 @@ use App\Controllers\Admin\PackageController;
 use App\Controllers\Admin\BlogController as AdminBlogController;
 use App\Controllers\PackagesController;
 use App\Controllers\BookingController;
+use App\Controllers\LocaleController;
 use App\Controllers\BlogController;
 use App\Controllers\Admin\BookingController as AdminBookingController;
+use App\Controllers\Admin\ContactController as AdminContactController;
+use App\Controllers\Admin\FooterController as AdminFooterController;
+use App\Controllers\Admin\FaqController as AdminFaqController;
 use App\Middleware\AuthMiddleware;
 
 App::boot();
@@ -39,9 +41,8 @@ $router->addMiddleware(RateLimitMiddleware::class);
 
 $router->get('/', [HomeController::class, 'index']);
 $router->get('/home', [HomeController::class, 'index']);
+$router->get('/lang/{locale}', [LocaleController::class, 'switch']);
 $router->get('/about', [AboutController::class, 'index']);
-$router->get('/services', [ServicesController::class, 'index']);
-$router->get('/destinations', [DestinationsController::class, 'index']);
 $router->get('/contact', [ContactController::class, 'index']);
 $router->post('/contact/submit', [ContactController::class, 'submit']);
 
@@ -63,6 +64,16 @@ $router->get('/admin/awards', [AwardsController::class, 'index'], [AuthMiddlewar
 $router->post('/admin/awards/update', [AwardsController::class, 'update'], [AuthMiddleware::class]);
 $router->post('/admin/awards/add', [AwardsController::class, 'add'], [AuthMiddleware::class]);
 $router->get('/admin/awards/delete/{id}', [AwardsController::class, 'delete'], [AuthMiddleware::class]);
+
+$router->get('/admin/contact', [AdminContactController::class, 'index'], [AuthMiddleware::class]);
+$router->post('/admin/contact/update', [AdminContactController::class, 'update'], [AuthMiddleware::class]);
+
+$router->get('/admin/footer', [AdminFooterController::class, 'index'], [AuthMiddleware::class]);
+$router->post('/admin/footer/update', [AdminFooterController::class, 'update'], [AuthMiddleware::class]);
+
+$router->get('/admin/faq', [AdminFaqController::class, 'index'], [AuthMiddleware::class]);
+$router->post('/admin/faq/add', [AdminFaqController::class, 'add'], [AuthMiddleware::class]);
+$router->get('/admin/faq/delete/{id}', [AdminFaqController::class, 'delete'], [AuthMiddleware::class]);
 
 $router->get('/admin/services', [AdminServiceController::class, 'index'], [AuthMiddleware::class]);
 $router->post('/admin/services/add', [AdminServiceController::class, 'add'], [AuthMiddleware::class]);

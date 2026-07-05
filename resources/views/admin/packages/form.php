@@ -20,9 +20,24 @@ function previewImage(input, previewId) {
 
 <form method="post" action="<?= $pkg ? base_url('admin/packages/update/' . (int) $pkg['id']) : base_url('admin/packages/store') ?>" enctype="multipart/form-data">
   <?= csrf_field() ?>
+
+  <div class="settings-group">
+    <h2 class="settings-group-title">Title</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><input type="text" name="title_en" value="<?= e($pkg['title_en'] ?? $pkg['title'] ?? '') ?>" required></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="title_ps" value="<?= e($pkg['title_ps'] ?? '') ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="title_fa" value="<?= e($pkg['title_fa'] ?? '') ?>"></div>
+    </div>
+    <h2 class="settings-group-title" style="margin-top:16px">Destination</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><input type="text" name="destination_en" value="<?= e($pkg['destination_en'] ?? $pkg['destination'] ?? '') ?>" placeholder="e.g. Saudi Arabia"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="destination_ps" value="<?= e($pkg['destination_ps'] ?? '') ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="destination_fa" value="<?= e($pkg['destination_fa'] ?? '') ?>"></div>
+    </div>
+  </div>
+
   <div class="settings-group">
     <div class="settings-grid">
-      <div class="settings-field"><label>Title</label><input type="text" name="title" value="<?= e($pkg['title'] ?? '') ?>" required></div>
       <div class="settings-field"><label>Slug (leave blank for auto)</label><input type="text" name="slug" value="<?= e($pkg['slug'] ?? '') ?>"></div>
       <div class="settings-field"><label>Category</label>
         <select name="category">
@@ -31,7 +46,6 @@ function previewImage(input, previewId) {
           <?php endforeach; ?>
         </select>
       </div>
-      <div class="settings-field"><label>Destination</label><input type="text" name="destination" value="<?= e($pkg['destination'] ?? '') ?>" placeholder="e.g. Saudi Arabia"></div>
       <div class="settings-field"><label>Price ($)</label><input type="text" name="price" value="<?= e($pkg['price'] ?? '0') ?>"></div>
       <div class="settings-field"><label>Duration (days)</label><input type="number" name="duration_days" value="<?= (int) ($pkg['duration_days'] ?? 1) ?>"></div>
       <div class="settings-field"><label>Max people</label><input type="number" name="max_people" value="<?= (int) ($pkg['max_people'] ?? 1) ?>"></div>
@@ -63,8 +77,10 @@ function previewImage(input, previewId) {
 
   <div class="settings-group">
     <h2 class="settings-group-title">Description</h2>
-    <div class="settings-field">
-      <textarea name="description" rows="8" style="width:100%;font-family:'Courier New',monospace;font-size:13px;padding:12px;border:1px solid var(--border);border-radius:8px"><?= e($pkg['description'] ?? '') ?></textarea>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><textarea name="description_en" rows="8"><?= e($pkg['description_en'] ?? $pkg['description'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="description_ps" rows="8"><?= e($pkg['description_ps'] ?? '') ?></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="description_fa" rows="8"><?= e($pkg['description_fa'] ?? '') ?></textarea></div>
     </div>
   </div>
 

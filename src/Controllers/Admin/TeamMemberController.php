@@ -42,8 +42,17 @@ class TeamMemberController
 
         TeamMember::create([
             'name'       => $name,
+            'name_en'    => $request->post('name_en', ''),
+            'name_ps'    => $request->post('name_ps', ''),
+            'name_fa'    => $request->post('name_fa', ''),
             'role'       => $role,
+            'role_en'    => $request->post('role_en', ''),
+            'role_ps'    => $request->post('role_ps', ''),
+            'role_fa'    => $request->post('role_fa', ''),
             'bio'        => $bio,
+            'bio_en'     => $request->post('bio_en', ''),
+            'bio_ps'     => $request->post('bio_ps', ''),
+            'bio_fa'     => $request->post('bio_fa', ''),
             'image'      => $image,
             'type'       => $type,
             'sort_order' => TeamMember::maxSortOrder() + 1,
@@ -102,11 +111,20 @@ class TeamMemberController
         }
 
         TeamMember::update($id, [
-            'name'  => $name,
-            'role'  => $role,
-            'bio'   => $bio,
-            'image' => $image,
-            'type'  => $type,
+            'name'    => $name,
+            'name_en' => $request->post('name_en', ''),
+            'name_ps' => $request->post('name_ps', ''),
+            'name_fa' => $request->post('name_fa', ''),
+            'role'    => $role,
+            'role_en' => $request->post('role_en', ''),
+            'role_ps' => $request->post('role_ps', ''),
+            'role_fa' => $request->post('role_fa', ''),
+            'bio'     => $bio,
+            'bio_en'  => $request->post('bio_en', ''),
+            'bio_ps'  => $request->post('bio_ps', ''),
+            'bio_fa'  => $request->post('bio_fa', ''),
+            'image'   => $image,
+            'type'    => $type,
         ]);
 
         Session::set('_success', 'Team member updated.');

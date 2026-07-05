@@ -48,16 +48,28 @@ class Post
     {
         $pdo = Database::connect();
         $stmt = $pdo->prepare(
-            "INSERT INTO posts (title, slug, excerpt, content, image, author, category, featured, published_at, active)
-             VALUES (:title, :slug, :excerpt, :content, :image, :author, :category, :featured, :published_at, :active)"
+            "INSERT INTO posts (title, title_en, title_ps, title_fa, slug, excerpt, excerpt_en, excerpt_ps, excerpt_fa, content, content_en, content_ps, content_fa, image, author, author_en, author_ps, author_fa, category, featured, published_at, active)
+             VALUES (:title, :title_en, :title_ps, :title_fa, :slug, :excerpt, :excerpt_en, :excerpt_ps, :excerpt_fa, :content, :content_en, :content_ps, :content_fa, :image, :author, :author_en, :author_ps, :author_fa, :category, :featured, :published_at, :active)"
         );
         $stmt->execute([
             'title'        => $data['title'],
+            'title_en'     => $data['title_en'] ?? $data['title'],
+            'title_ps'     => $data['title_ps'] ?? '',
+            'title_fa'     => $data['title_fa'] ?? '',
             'slug'         => $data['slug'] ?? self::slugify($data['title']),
             'excerpt'      => $data['excerpt'] ?? '',
+            'excerpt_en'   => $data['excerpt_en'] ?? $data['excerpt'] ?? '',
+            'excerpt_ps'   => $data['excerpt_ps'] ?? '',
+            'excerpt_fa'   => $data['excerpt_fa'] ?? '',
             'content'      => $data['content'] ?? '',
+            'content_en'   => $data['content_en'] ?? $data['content'] ?? '',
+            'content_ps'   => $data['content_ps'] ?? '',
+            'content_fa'   => $data['content_fa'] ?? '',
             'image'        => $data['image'] ?? null,
             'author'       => $data['author'] ?? null,
+            'author_en'    => $data['author_en'] ?? $data['author'] ?? '',
+            'author_ps'    => $data['author_ps'] ?? '',
+            'author_fa'    => $data['author_fa'] ?? '',
             'category'     => $data['category'] ?? null,
             'featured'     => $data['featured'] ?? 0,
             'published_at' => $data['published_at'] ?? date('Y-m-d H:i:s'),
@@ -71,7 +83,7 @@ class Post
         $pdo = Database::connect();
         $fields = [];
         $params = ['id' => $id];
-        $cols = ['title', 'slug', 'excerpt', 'content', 'image', 'author', 'category', 'featured', 'published_at', 'active'];
+        $cols = ['title', 'title_en', 'title_ps', 'title_fa', 'slug', 'excerpt', 'excerpt_en', 'excerpt_ps', 'excerpt_fa', 'content', 'content_en', 'content_ps', 'content_fa', 'image', 'author', 'author_en', 'author_ps', 'author_fa', 'category', 'featured', 'published_at', 'active'];
 
         foreach ($cols as $c) {
             if (array_key_exists($c, $data)) {

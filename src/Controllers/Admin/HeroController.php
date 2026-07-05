@@ -25,13 +25,15 @@ class HeroController
         $uploadDir = __DIR__ . '/../../../storage/uploads/hero/';
 
         $textKeys = [
-            'hero_badge', 'hero_title', 'hero_subtitle',
-            'hero_btn1_text', 'hero_btn1_url',
-            'hero_btn2_text', 'hero_btn2_url',
-            'hero_stat1_num', 'hero_stat1_label',
-            'hero_stat2_num', 'hero_stat2_label',
-            'hero_stat3_num', 'hero_stat3_label',
-            'hero_stat4_num', 'hero_stat4_label',
+            'hero_badge', 'hero_badge_ps', 'hero_badge_fa',
+            'hero_title', 'hero_title_ps', 'hero_title_fa',
+            'hero_subtitle', 'hero_subtitle_ps', 'hero_subtitle_fa',
+            'hero_btn1_text', 'hero_btn1_text_ps', 'hero_btn1_text_fa', 'hero_btn1_url',
+            'hero_btn2_text', 'hero_btn2_text_ps', 'hero_btn2_text_fa', 'hero_btn2_url',
+            'hero_stat1_num', 'hero_stat1_label', 'hero_stat1_label_ps', 'hero_stat1_label_fa',
+            'hero_stat2_num', 'hero_stat2_label', 'hero_stat2_label_ps', 'hero_stat2_label_fa',
+            'hero_stat3_num', 'hero_stat3_label', 'hero_stat3_label_ps', 'hero_stat3_label_fa',
+            'hero_stat4_num', 'hero_stat4_label', 'hero_stat4_label_ps', 'hero_stat4_label_fa',
         ];
 
         foreach ($textKeys as $key) {
@@ -81,6 +83,9 @@ class HeroController
         HeroSlide::create([
             'image'      => $image,
             'label'      => $label,
+            'label_en'   => $request->post('label_en', ''),
+            'label_ps'   => $request->post('label_ps', ''),
+            'label_fa'   => $request->post('label_fa', ''),
             'sort_order' => HeroSlide::maxSortOrder() + 1,
             'active'     => 1,
         ]);

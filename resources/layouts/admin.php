@@ -15,6 +15,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="<?= asset('assets/css/admin.css') ?>">
+<style>
+.locale-row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; padding:12px; background:#f8f9fa; border-radius:8px; border:1px solid var(--border); }
+.locale-input { flex:1; min-width:180px; }
+.locale-input label { display:block; font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; margin-bottom:4px; letter-spacing:.3px; }
+.locale-input input, .locale-input textarea { width:100%; padding:8px 10px; font-size:13px; border:1px solid var(--border); border-radius:6px; box-sizing:border-box; }
+.locale-input textarea { min-height:70px; resize:vertical; }
+</style>
 </head>
 <body>
 
@@ -50,6 +57,15 @@
     </a>
     <a href="<?= base_url('admin/about') ?>" class="nav-item <?= str_starts_with($_SERVER['REQUEST_URI'] ?? '', '/new/admin/about') ? 'active' : '' ?>">
       <i class="fas fa-building"></i> About
+    </a>
+    <a href="<?= base_url('admin/contact') ?>" class="nav-item <?= str_starts_with($_SERVER['REQUEST_URI'] ?? '', '/new/admin/contact') ? 'active' : '' ?>">
+      <i class="fas fa-envelope"></i> Contact
+    </a>
+    <a href="<?= base_url('admin/footer') ?>" class="nav-item <?= str_starts_with($_SERVER['REQUEST_URI'] ?? '', '/new/admin/footer') ? 'active' : '' ?>">
+      <i class="fas fa-shoe-prints"></i> Footer
+    </a>
+    <a href="<?= base_url('admin/faq') ?>" class="nav-item <?= str_starts_with($_SERVER['REQUEST_URI'] ?? '', '/new/admin/faq') ? 'active' : '' ?>">
+      <i class="fas fa-question-circle"></i> FAQ
     </a>
     <a href="<?= base_url('admin/awards') ?>" class="nav-item <?= str_starts_with($_SERVER['REQUEST_URI'] ?? '', '/new/admin/awards') ? 'active' : '' ?>">
       <i class="fas fa-award"></i> Awards
@@ -89,6 +105,7 @@
   </main>
 
 </div>
+
 
 </body>
 </html>

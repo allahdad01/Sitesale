@@ -30,8 +30,8 @@
         $slideImg = str_starts_with($img, 'http') ? $img : asset('storage/uploads/hero/' . $img);
       ?>
       <div class="item" style="--position:<?= $i ?>">
-        <img src="<?= e($slideImg) ?>" alt="<?= e($slide['label']) ?>" loading="lazy">
-        <div class="item-label"><?= e($slide['label']) ?></div>
+        <img src="<?= e($slideImg) ?>" alt="<?= locale_val_e($slide, 'label') ?>" loading="lazy">
+        <div class="item-label"><?= locale_val_e($slide, 'label') ?></div>
       </div>
       <?php endforeach;
         $kaabaImg = setting('hero_kaaba_img', '');
@@ -54,9 +54,9 @@
 
 <?php if (in_array('services', $activeSections)): ?><section class="services" id="services">
   <div class="services-header">
-    <span class="services-tag"><i class="fas fa-mosque"></i> What We Offer</span>
-    <h2 class="services-title">Premium <span class="services-title-accent">Services</span></h2>
-    <p class="services-desc">From sacred pilgrimages to global adventures, we handle every detail with care and professionalism.</p>
+    <span class="services-tag"><i class="fas fa-mosque"></i> <?= __('services.tag') ?></span>
+    <h2 class="services-title"><?= __('services.title') ?></h2>
+    <p class="services-desc"><?= __('services.desc') ?></p>
   </div>
 
   <div class="service-stage">
@@ -65,19 +65,19 @@
       $sLink = $sv['link'] ? base_url(ltrim($sv['link'], '/')) : base_url('contact');
     ?>
     <div class="service-card<?= $si === 0 ? ' active' : '' ?>">
-      <img src="<?= e($sImg) ?>" alt="<?= e($sv['title']) ?>" loading="lazy">
+        <img src="<?= e($sImg) ?>" alt="<?= locale_val_e($sv, 'title') ?>" loading="lazy">
       <div class="service-overlay"></div>
       <div class="service-content">
-        <div class="service-tag"><?= e($sv['tag']) ?></div>
-        <h2><?= e($sv['title']) ?></h2>
-        <p><?= $sv['description'] ?></p>
-        <a href="<?= e($sLink) ?>" class="service-btn">Learn More</a>
+        <div class="service-tag"><?= locale_val_e($sv, 'tag') ?></div>
+        <h2><?= locale_val_e($sv, 'title') ?></h2>
+        <p><?= locale_val($sv, 'description') ?></p>
+        <a href="<?= e($sLink) ?>" class="service-btn"><?= __('services.learn_more') ?></a>
       </div>
     </div>
     <?php endforeach; ?>
 
     <div class="service-hint">
-      SCROLL
+      <?= __('services.scroll') ?>
       <div class="service-arrow">↓</div>
     </div>
     <div class="service-dots"></div>
@@ -95,19 +95,19 @@
 <section class="packages-section" id="packages">
   <div class="packages-header">
     <div>
-      <span class="eyebrow">Umrah &amp; Hajj Packages</span>
-      <h2 class="section-title">Choose your distance to the Haram</h2>
-      <p class="section-intro">Every package is built around where you'll stay — the closer your room, the more of your day belongs to worship instead of walking.</p>
+      <span class="eyebrow"><?= __('packages.eyebrow') ?></span>
+      <h2 class="section-title"><?= __('packages.title') ?></h2>
+      <p class="section-intro"><?= __('packages.desc') ?></p>
     </div>
   </div>
 
   <div class="packages-grid">
     <?php foreach ($featuredPackages as $i => $p):
-      $inclusions = $pkgInclusions($p['description']);
+      $inclusions = $pkgInclusions(locale_val($p, 'description'));
     ?>
     <article class="package-card<?= $i === 0 ? ' featured' : '' ?>">
       <?php if ($p['image']): ?>
-      <div class="package-image"><img src="<?= asset('storage/uploads/' . e($p['image'])) ?>" alt="<?= e($p['title']) ?>"></div>
+      <div class="package-image"><img src="<?= asset('storage/uploads/' . e($p['image'])) ?>" alt="<?= locale_val_e($p, 'title') ?>"></div>
       <?php else: ?>
       <div class="package-arch-frame">
         <div class="arch">
@@ -120,20 +120,20 @@
       </div>
       <?php endif; ?>
       <div class="package-body">
-        <span class="package-kind"><?= e(ucfirst($p['category'])) ?> — <?= e(mb_substr($p['title'], 0, str_contains($p['title'], ',') ? strpos($p['title'], ',') : 20)) ?></span>
-        <h3 class="package-title"><?= e($p['title']) ?></h3>
+        <span class="package-kind"><?= e(ucfirst($p['category'])) ?> — <?= e(mb_substr(locale_val($p, 'title'), 0, str_contains(locale_val($p, 'title'), ',') ? strpos(locale_val($p, 'title'), ',') : 20)) ?></span>
+        <h3 class="package-title"><?= locale_val_e($p, 'title') ?></h3>
         <div class="package-meta-row">
           <div class="meta-item">
             <span class="meta-value"><?= (int) $p['duration_days'] ?></span>
-            <span class="meta-label"><?= (int) $p['duration_days'] === 1 ? 'day' : 'days' ?></span>
+            <span class="meta-label"><?= (int) $p['duration_days'] === 1 ? __('packages.day') : __('packages.days') ?></span>
           </div>
           <div class="meta-item">
-            <span class="meta-value"><?= e($p['destination'] ?: '—') ?></span>
-            <span class="meta-label">destination</span>
+            <span class="meta-value"><?= locale_val_e($p, 'destination', '—') ?></span>
+            <span class="meta-label"><?= __('packages.destination') ?></span>
           </div>
           <div class="meta-item">
             <span class="meta-value"><?= (int) $p['max_people'] ?> pax</span>
-            <span class="meta-label">max group</span>
+            <span class="meta-label"><?= __('packages.max_group') ?></span>
           </div>
         </div>
         <ul class="package-inclusions">
@@ -142,8 +142,8 @@
           <?php endforeach; ?>
         </ul>
         <div class="package-footer">
-          <div class="package-price">$<?= number_format($p['price']) ?><span>per person</span></div>
-          <a href="<?= base_url('packages/' . e($p['slug'])) ?>" class="btn-view">View Details <i class="fas fa-arrow-right"></i></a>
+          <div class="package-price">$<?= number_format($p['price']) ?><span><?= __('packages.per_person') ?></span></div>
+          <a href="<?= base_url('packages/' . e($p['slug'])) ?>" class="btn-view"><?= __('packages.view_details') ?> <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </article>
@@ -155,9 +155,9 @@
 <?php if (in_array('destinations', $activeSections)): ?><section class="destinations" id="destinations">
   <div class="destinations-inner">
     <div class="destinations-left">
-      <span class="section-tag">Explore The World</span>
-      <h2 class="section-title">Popular Destinations</h2>
-      <p class="section-desc">Sacred cities to breathtaking getaways &mdash; we take you where your heart calls.</p>
+      <span class="section-tag"><?= __('destinations.tag') ?></span>
+      <h2 class="section-title"><?= __('destinations.title') ?></h2>
+      <p class="section-desc"><?= __('destinations.desc') ?></p>
       <div class="dest-progress">
         <span class="dot active"></span>
         <span class="dot"></span>
@@ -167,66 +167,66 @@
         <span class="dot"></span>
       </div>
     </div>
-    <div class="destinations-track-wrap">
+    <div class="destinations-track-wrap"<?= locale_dir() === 'rtl' ? ' dir="ltr"' : '' ?>>
       <div class="destinations-track">
         <div class="dest-card">
           <img class="dest-card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kaaba_Mecca.jpg?width=900" alt="The Kaaba in Mecca" loading="lazy">
           <div class="dest-card-overlay"></div>
           <div class="dest-card-info">
-            <span class="dest-card-tag">Sacred Pilgrimage</span>
-            <h3>Mecca</h3>
-            <p>Umrah &amp; Hajj packages available</p>
-            <a href="<?= base_url('contact') ?>" class="dest-card-btn">Explore <i class="fas fa-arrow-right"></i></a>
+            <span class="dest-card-tag"><?= __('destinations.mecca_tag') ?></span>
+            <h3><?= __('destinations.mecca') ?></h3>
+            <p><?= __('destinations.mecca_desc') ?></p>
+            <a href="<?= base_url('contact') ?>" class="dest-card-btn"><?= __('destinations.explore') ?> <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="dest-card">
           <img class="dest-card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Dubai_Skyline_2016.jpg?width=900" alt="Dubai skyline" loading="lazy">
           <div class="dest-card-overlay"></div>
           <div class="dest-card-info">
-            <span class="dest-card-tag">Luxury Travel</span>
-            <h3>Dubai</h3>
-            <p>City tours, desert safari &amp; more</p>
-            <a href="<?= base_url('contact') ?>" class="dest-card-btn">Explore <i class="fas fa-arrow-right"></i></a>
+            <span class="dest-card-tag"><?= __('destinations.dubai_tag') ?></span>
+            <h3><?= __('destinations.dubai') ?></h3>
+            <p><?= __('destinations.dubai_desc') ?></p>
+            <a href="<?= base_url('contact') ?>" class="dest-card-btn"><?= __('destinations.explore') ?> <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="dest-card">
           <img class="dest-card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Hagia_Sophia_and_Blue_Mosque.jpg?width=900" alt="Hagia Sophia and Blue Mosque, Istanbul" loading="lazy">
           <div class="dest-card-overlay"></div>
           <div class="dest-card-info">
-            <span class="dest-card-tag">Cultural Heritage</span>
-            <h3>Istanbul</h3>
-            <p>History, mosques &amp; Bosphorus views</p>
-            <a href="<?= base_url('contact') ?>" class="dest-card-btn">Explore <i class="fas fa-arrow-right"></i></a>
+            <span class="dest-card-tag"><?= __('destinations.istanbul_tag') ?></span>
+            <h3><?= __('destinations.istanbul') ?></h3>
+            <p><?= __('destinations.istanbul_desc') ?></p>
+            <a href="<?= base_url('contact') ?>" class="dest-card-btn"><?= __('destinations.explore') ?> <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="dest-card">
           <img class="dest-card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/View_on_Petronas_Towers.JPG?width=900" alt="Petronas Towers, Malaysia" loading="lazy">
           <div class="dest-card-overlay"></div>
           <div class="dest-card-info">
-            <span class="dest-card-tag">Southeast Asia</span>
-            <h3>Malaysia</h3>
-            <p>Halal-friendly, vibrant culture</p>
-            <a href="<?= base_url('contact') ?>" class="dest-card-btn">Explore <i class="fas fa-arrow-right"></i></a>
+            <span class="dest-card-tag"><?= __('destinations.malaysia_tag') ?></span>
+            <h3><?= __('destinations.malaysia') ?></h3>
+            <p><?= __('destinations.malaysia_desc') ?></p>
+            <a href="<?= base_url('contact') ?>" class="dest-card-btn"><?= __('destinations.explore') ?> <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="dest-card">
           <img class="dest-card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tower_Bridge.JPG?width=900" alt="Tower Bridge, London" loading="lazy">
           <div class="dest-card-overlay"></div>
           <div class="dest-card-info">
-            <span class="dest-card-tag">Europe</span>
-            <h3>London</h3>
-            <p>Iconic landmarks &amp; world culture</p>
-            <a href="<?= base_url('contact') ?>" class="dest-card-btn">Explore <i class="fas fa-arrow-right"></i></a>
+            <span class="dest-card-tag"><?= __('destinations.london_tag') ?></span>
+            <h3><?= __('destinations.london') ?></h3>
+            <p><?= __('destinations.london_desc') ?></p>
+            <a href="<?= base_url('contact') ?>" class="dest-card-btn"><?= __('destinations.explore') ?> <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
         <div class="dest-card">
           <img class="dest-card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kabul_Downtown_(Afghanistan).jpg?width=900" alt="Kabul downtown, Afghanistan" loading="lazy">
           <div class="dest-card-overlay"></div>
           <div class="dest-card-info">
-            <span class="dest-card-tag">Homeland</span>
-            <h3>Afghanistan</h3>
-            <p>Domestic &amp; regional connections</p>
-            <a href="<?= base_url('contact') ?>" class="dest-card-btn">Explore <i class="fas fa-arrow-right"></i></a>
+            <span class="dest-card-tag"><?= __('destinations.afghanistan_tag') ?></span>
+            <h3><?= __('destinations.afghanistan') ?></h3>
+            <p><?= __('destinations.afghanistan_desc') ?></p>
+            <a href="<?= base_url('contact') ?>" class="dest-card-btn"><?= __('destinations.explore') ?> <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -251,8 +251,8 @@
         $src = str_starts_with($img, 'http') ? $img : asset('storage/uploads/awards/' . $img);
       ?>
       <div class="item" style="--position:<?= $i ?>">
-        <img src="<?= e($src) ?>" alt="<?= e($a['label']) ?>" loading="lazy">
-        <div class="item-label"><?= e($a['label']) ?></div>
+        <img src="<?= e($src) ?>" alt="<?= locale_val_e($a, 'label') ?>" loading="lazy">
+        <div class="item-label"><?= locale_val_e($a, 'label') ?></div>
       </div>
       <?php endforeach; ?>
       <div class="center-emblem">
@@ -279,33 +279,33 @@
 <?php endif; ?>
 
 <?php if (in_array('testimonials', $activeSections)): ?><section class="testimonials-section" id="about">
-  <div class="testimonials-title">What Our Users Say</div>
-  <div class="testimonials-subtitle">Continuous real-time trust stream</div>
+  <div class="testimonials-title"><?= __('testimonials.title') ?></div>
+  <div class="testimonials-subtitle"><?= __('testimonials.subtitle') ?></div>
 
   <div class="testimonials-track-wrap">
     <div class="testimonials-track">
       <?php foreach ($testimonials as $t):
-        $tag = $t['position'] ? explode('·', $t['position'])[0] : 'Client';
+        $tag = locale_val($t, 'position') ? explode('·', locale_val($t, 'position'))[0] : 'Client';
         $initials = '';
-        foreach (explode(' ', $t['name']) as $part) { if ($part !== '') $initials .= strtoupper(mb_substr($part, 0, 1)); }
+        foreach (explode(' ', locale_val($t, 'name')) as $part) { if ($part !== '') $initials .= strtoupper(mb_substr($part, 0, 1)); }
       ?>
       <div class="testimonials-card">
         <div class="testimonials-card-avatar"><?php if (!empty($t['avatar'])): ?><img src="<?= asset('storage/uploads/testimonials/' . e($t['avatar'])) ?>" alt=""><?php else: ?><span class="testimonials-card-initials"><?= e($initials) ?></span><?php endif; ?></div>
         <div class="testimonials-card-tag"><?= e(strtoupper($tag)) ?></div>
-        <div class="testimonials-card-name"><?= e($t['name']) ?></div>
-        <div class="testimonials-card-text"><?= e($t['content']) ?></div>
+        <div class="testimonials-card-name"><?= locale_val_e($t, 'name') ?></div>
+        <div class="testimonials-card-text"><?= locale_val_e($t, 'content') ?></div>
       </div>
       <?php endforeach; ?>
       <?php foreach ($testimonials as $t):
-        $tag = $t['position'] ? explode('·', $t['position'])[0] : 'Client';
+        $tag = locale_val($t, 'position') ? explode('·', locale_val($t, 'position'))[0] : 'Client';
         $initials = '';
-        foreach (explode(' ', $t['name']) as $part) { if ($part !== '') $initials .= strtoupper(mb_substr($part, 0, 1)); }
+        foreach (explode(' ', locale_val($t, 'name')) as $part) { if ($part !== '') $initials .= strtoupper(mb_substr($part, 0, 1)); }
       ?>
       <div class="testimonials-card">
         <div class="testimonials-card-avatar"><?php if (!empty($t['avatar'])): ?><img src="<?= asset('storage/uploads/testimonials/' . e($t['avatar'])) ?>" alt=""><?php else: ?><span class="testimonials-card-initials"><?= e($initials) ?></span><?php endif; ?></div>
         <div class="testimonials-card-tag"><?= e(strtoupper($tag)) ?></div>
-        <div class="testimonials-card-name"><?= e($t['name']) ?></div>
-        <div class="testimonials-card-text"><?= e($t['content']) ?></div>
+        <div class="testimonials-card-name"><?= locale_val_e($t, 'name') ?></div>
+        <div class="testimonials-card-text"><?= locale_val_e($t, 'content') ?></div>
       </div>
       <?php endforeach; ?>
     </div>
@@ -322,17 +322,17 @@
 ?>
 <section class="blog-section" id="blog">
   <div class="blog-header">
-    <span class="eyebrow">From the Journal</span>
-    <h2 class="section-title">Notes for the journey ahead</h2>
-    <p class="section-intro">Guidance, rituals, and practical checklists from pilgrims and scholars who've made the trip before you.</p>
+    <span class="eyebrow"><?= __('blog.eyebrow') ?></span>
+    <h2 class="section-title"><?= __('blog.title') ?></h2>
+    <p class="section-intro"><?= __('blog.desc') ?></p>
   </div>
 
   <div class="blog-wrap">
     <a href="<?= base_url('blog/' . e($featuredPost['slug'])) ?>" class="blog-featured<?= !empty($featuredPost['image']) ? ' has-img' : '' ?>"<?php if (!empty($featuredPost['image'])): ?> style="background-image:url('<?= asset('storage/uploads/' . e($featuredPost['image'])) ?>')"<?php endif; ?>>
-      <span class="eyebrow"><?= e($featuredPost['category'] ?: 'Featured') ?></span>
-      <h3><?= e($featuredPost['title']) ?></h3>
-      <p><?= e($featuredPost['excerpt'] ?: mb_substr(strip_tags($featuredPost['content']), 0, 150)) ?></p>
-      <span class="read-link">Read the guide →</span>
+      <span class="eyebrow"><?= e($featuredPost['category'] ?: __('blog.featured')) ?></span>
+      <h3><?= locale_val_e($featuredPost, 'title') ?></h3>
+      <p><?= locale_val_e($featuredPost, 'excerpt', mb_substr(strip_tags(locale_val($featuredPost, 'content')), 0, 150)) ?></p>
+      <span class="read-link"><?= __('blog.read_guide') ?></span>
     </a>
 
     <div class="blog-list">
@@ -340,8 +340,8 @@
       <a href="<?= base_url('blog/' . e($op['slug'])) ?>" class="blog-item">
         <div class="blog-item-arch"><span><?= str_pad($pi + 1, 2, '0', STR_PAD_LEFT) ?></span></div>
         <div>
-          <h4 class="blog-item-title"><?= e($op['title']) ?></h4>
-          <span class="blog-item-meta"><?= e($op['category'] ?: 'Article') . ($op['published_at'] ? ' · ' . date('j M Y', strtotime($op['published_at'])) : '') ?></span>
+          <h4 class="blog-item-title"><?= locale_val_e($op, 'title') ?></h4>
+          <span class="blog-item-meta"><?= e($op['category'] ?: __('blog.article')) . ($op['published_at'] ? ' · ' . date('j M Y', strtotime($op['published_at'])) : '') ?></span>
         </div>
       </a>
       <?php endforeach; ?>
@@ -353,61 +353,61 @@
 <?php if (in_array('contact', $activeSections)): ?><div class="contact-wrap" id="contact">
   <div class="contact">
     <div class="contact-info">
-      <span class="section-tag">Get In Touch</span>
-      <h2 class="section-title">Plan Your<br>Journey Today</h2>
-      <p class="section-desc">Our travel consultants are here to guide you &mdash; whether it's your first Umrah or a family vacation.</p>
+      <span class="section-tag"><?= __('contact.tag') ?></span>
+      <h2 class="section-title"><?= __('contact.title') ?></h2>
+      <p class="section-desc"><?= __('contact.desc') ?></p>
       <div class="contact-details">
       <div class="contact-detail">
         <div class="contact-detail-icon"><i class="fas fa-phone"></i></div>
         <div class="contact-detail-text">
-          <h5>Phone &amp; WhatsApp</h5>
+          <h5><?= __('contact.phone') ?></h5>
           <p><a href="tel:<?= e(setting('contact_phone', '+93 700 000 000')) ?>"><?= e(setting('contact_phone', '+93 700 000 000')) ?></a></p>
         </div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-icon"><i class="fas fa-envelope"></i></div>
         <div class="contact-detail-text">
-          <h5>Email</h5>
+          <h5><?= __('contact.email') ?></h5>
           <p><a href="mailto:<?= e(setting('contact_email', 'info@almoqadas.com')) ?>"><?= e(setting('contact_email', 'info@almoqadas.com')) ?></a></p>
         </div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-icon"><i class="fas fa-location-dot"></i></div>
         <div class="contact-detail-text">
-          <h5>Office</h5>
+          <h5><?= __('contact.office') ?></h5>
           <p><?= e(setting('contact_address', 'Kabul, Afghanistan')) ?></p>
         </div>
       </div>
     </div>
     </div>
     <div class="contact-form">
-      <h3>Request a Package</h3>
+      <h3><?= __('contact.form_title') ?></h3>
       <form id="enquiryForm" novalidate>
         <?= csrf_field() ?>
         <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="full_name" placeholder="Your full name" required>
+          <label for="fullName"><?= __('contact.form_name') ?></label>
+          <input type="text" id="fullName" name="full_name" placeholder="<?= __('contact.form_placeholder_name') ?>" required>
         </div>
         <div class="form-group">
-          <label for="phone">Phone / WhatsApp</label>
-          <input type="tel" id="phone" name="phone" placeholder="+93 ..." required>
+          <label for="phone"><?= __('contact.form_phone') ?></label>
+          <input type="tel" id="phone" name="phone" placeholder="<?= __('contact.form_placeholder_phone') ?>" required>
         </div>
         <div class="form-group">
-          <label for="service">Service Required</label>
+          <label for="service"><?= __('contact.form_service') ?></label>
           <select id="service" name="service">
-            <option>Umrah Package</option>
-            <option>Hajj Package</option>
-            <option>Flight Booking</option>
-            <option>Visa Services</option>
-            <option>Hotel Reservation</option>
-            <option>Custom Tour</option>
+            <option><?= __('contact.form_umrah') ?></option>
+            <option><?= __('contact.form_hajj') ?></option>
+            <option><?= __('contact.form_flight') ?></option>
+            <option><?= __('contact.form_visa') ?></option>
+            <option><?= __('contact.form_hotel') ?></option>
+            <option><?= __('contact.form_tour') ?></option>
           </select>
         </div>
         <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell us about your travel plans, dates, group size..."></textarea>
+          <label for="message"><?= __('contact.form_message') ?></label>
+          <textarea id="message" name="message" placeholder="<?= __('contact.form_placeholder_message') ?>"></textarea>
         </div>
-        <button type="submit" class="btn-primary" style="width:100%;">Send Enquiry <i class="fas fa-arrow-right"></i></button>
+        <button type="submit" class="btn-primary" style="width:100%;"><?= __('contact.form_submit') ?> <i class="fas fa-arrow-right"></i></button>
         <p class="form-status" id="formStatus" role="status"></p>
       </form>
     </div>
@@ -417,11 +417,16 @@
 
 <?php foreach ($customSections as $cs): ?>
 <section class="custom-section custom-<?= e($cs['section_key']) ?>">
-  <?= $cs['content'] ?>
+  <?= locale_val($cs, 'content') ?>
 </section>
 <?php endforeach; ?>
 
-<?php $contactSubmitUrl = base_url('contact/submit');
+<?php
+$contactSubmitUrl = base_url('contact/submit');
+$sendingText = __('contact.form_sending');
+$successText = __('contact.form_success');
+$errorText = __('contact.form_error');
+$networkErrorText = __('contact.form_network_error');
 $page_scripts = <<<SCRIPT
 <script>
 gsap.registerPlugin(ScrollTrigger);
@@ -429,6 +434,7 @@ gsap.registerPlugin(ScrollTrigger);
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isNarrowViewport = window.matchMedia('(max-width: 900px)').matches;
 const enableHeavyScrollFX = !prefersReducedMotion && !isNarrowViewport;
+const isRTL = document.documentElement.dir === 'rtl';
 
 const SERVICE_CARDS = document.querySelectorAll('.service-card');
 const SERVICE_STAGE = document.querySelector('.service-stage');
@@ -592,7 +598,7 @@ enqForm.addEventListener('submit', function (e) {
   var status = document.getElementById('formStatus');
   var origHtml = enqBtn.innerHTML;
 
-  enqBtn.innerHTML = '<i class="fas fa-spinner"></i> Sending...';
+  enqBtn.innerHTML = '<i class="fas fa-spinner"></i> $sendingText';
   enqBtn.classList.add('form-btn-loading');
 
   fetch('$contactSubmitUrl', {
@@ -604,18 +610,18 @@ enqForm.addEventListener('submit', function (e) {
     enqBtn.classList.remove('form-btn-loading');
     enqBtn.innerHTML = origHtml;
     if (data.success) {
-      status.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! We have received your enquiry and will get back to you shortly.';
+      status.innerHTML = '<i class="fas fa-check-circle"></i> $successText';
       status.className = 'form-status visible success';
       form.reset();
     } else {
-      status.textContent = data.error || 'Something went wrong. Please try again.';
+      status.textContent = data.error || '$errorText';
       status.className = 'form-status visible error';
     }
   })
   .catch(function () {
     enqBtn.classList.remove('form-btn-loading');
     enqBtn.innerHTML = origHtml;
-    status.textContent = 'Network error. Please try again.';
+    status.textContent = '$networkErrorText';
     status.className = 'form-status visible error';
   });
 });

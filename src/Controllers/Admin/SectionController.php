@@ -39,8 +39,14 @@ class SectionController
             'page'        => 'home',
             'section_key' => $sectionKey,
             'label'       => $request->post('label', ''),
+            'label_en'    => $request->post('label_en', ''),
+            'label_ps'    => $request->post('label_ps', ''),
+            'label_fa'    => $request->post('label_fa', ''),
             'type'        => $request->post('type', 'custom_html'),
             'content'     => $request->post('content', ''),
+            'content_en'  => $request->post('content_en', ''),
+            'content_ps'  => $request->post('content_ps', ''),
+            'content_fa'  => $request->post('content_fa', ''),
             'active'      => $request->post('active', 1),
         ]);
 
@@ -71,7 +77,13 @@ class SectionController
 
         PageSection::update($id, [
             'label'       => $request->post('label', ''),
+            'label_en'    => $request->post('label_en', ''),
+            'label_ps'    => $request->post('label_ps', ''),
+            'label_fa'    => $request->post('label_fa', ''),
             'content'     => $request->post('content', ''),
+            'content_en'  => $request->post('content_en', ''),
+            'content_ps'  => $request->post('content_ps', ''),
+            'content_fa'  => $request->post('content_fa', ''),
             'active'      => (int) $request->post('active', 0),
             'section_key' => $request->post('section_key', ''),
         ]);

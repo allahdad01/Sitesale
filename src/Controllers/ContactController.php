@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\Request;
 use App\Core\View;
 use App\Core\Response;
+use App\Models\Faq;
 use App\Services\ContactService;
 
 class ContactController
@@ -15,6 +16,7 @@ class ContactController
             'title'       => 'Contact Us — Al Moqadas Travel Agency',
             'description' => 'Get in touch with Al Moqadas for Umrah, Hajj, flight bookings, visa services, and travel inquiries.',
             'current_page' => 'contact',
+            'faqs'        => Faq::all(),
         ], 'main');
     }
 

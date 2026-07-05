@@ -33,13 +33,22 @@ class TestimonialController
         }
 
         Testimonial::create([
-            'name'       => $request->post('name', ''),
-            'position'   => $request->post('position', ''),
-            'content'    => $request->post('content', ''),
-            'rating'     => (int) $request->post('rating', 5),
-            'avatar'     => $avatar,
-            'sort_order' => Testimonial::maxSortOrder() + 1,
-            'active'     => 1,
+            'name'        => $request->post('name', ''),
+            'name_en'     => $request->post('name_en', ''),
+            'name_ps'     => $request->post('name_ps', ''),
+            'name_fa'     => $request->post('name_fa', ''),
+            'position'    => $request->post('position', ''),
+            'position_en' => $request->post('position_en', ''),
+            'position_ps' => $request->post('position_ps', ''),
+            'position_fa' => $request->post('position_fa', ''),
+            'content'     => $request->post('content', ''),
+            'content_en'  => $request->post('content_en', ''),
+            'content_ps'  => $request->post('content_ps', ''),
+            'content_fa'  => $request->post('content_fa', ''),
+            'rating'      => (int) $request->post('rating', 5),
+            'avatar'      => $avatar,
+            'sort_order'  => Testimonial::maxSortOrder() + 1,
+            'active'      => 1,
         ]);
 
         Session::set('_success', 'Testimonial added.');

@@ -2,7 +2,7 @@
 
   <?php if ($post['image']): ?>
   <div class="article-hero">
-    <img src="<?= asset('storage/uploads/' . e($post['image'])) ?>" alt="<?= e($post['title']) ?>">
+    <img src="<?= asset('storage/uploads/' . e($post['image'])) ?>" alt="<?= locale_val_e($post, 'title') ?>">
     <div class="article-hero-overlay"></div>
   </div>
   <?php endif; ?>
@@ -11,7 +11,7 @@
 
     <div class="article-main">
       <div class="article-breadcrumb">
-        <a href="<?= base_url('blog') ?>"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        <a href="<?= base_url('blog') ?>"><i class="fas fa-arrow-left"></i> <?= __('blog.back_to_blog') ?></a>
       </div>
 
       <?php if ($post['category']): ?>
@@ -20,14 +20,14 @@
         </div>
       <?php endif; ?>
 
-      <h1 class="article-title"><?= e($post['title']) ?></h1>
+      <h1 class="article-title"><?= locale_val_e($post, 'title') ?></h1>
 
       <div class="article-meta-bar">
         <div class="article-author">
-          <?php if ($post['author']): ?>
+          <?php if (locale_val($post, 'author')): ?>
             <div class="article-avatar"><i class="fas fa-user-circle"></i></div>
             <div class="article-author-info">
-              <span class="article-author-name"><?= e($post['author']) ?></span>
+              <span class="article-author-name"><?= locale_val_e($post, 'author') ?></span>
               <?php if ($post['published_at']): ?>
                 <span class="article-date"><?= date('F j, Y', strtotime($post['published_at'])) ?></span>
               <?php endif; ?>
@@ -38,7 +38,7 @@
           <?php endif; ?>
         </div>
         <div class="article-share">
-          <span>Share</span>
+          <span><?= __('blog.share') ?></span>
           <button onclick="shareUrl('facebook')" aria-label="Facebook"><i class="fab fa-facebook-f"></i></button>
           <button onclick="shareUrl('twitter')" aria-label="Twitter"><i class="fab fa-x-twitter"></i></button>
           <button onclick="shareUrl('linkedin')" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></button>
@@ -47,10 +47,10 @@
       </div>
 
       <div class="article-body">
-        <?php if ($post['excerpt']): ?>
-          <div class="article-excerpt"><p><?= e($post['excerpt']) ?></p></div>
+        <?php if (locale_val($post, 'excerpt')): ?>
+          <div class="article-excerpt"><p><?= locale_val_e($post, 'excerpt') ?></p></div>
         <?php endif; ?>
-        <div class="article-text"><?= $post['content'] ?></div>
+        <div class="article-text"><?= locale_val($post, 'content') ?></div>
       </div>
 
       <div class="article-footer-bar">
@@ -58,7 +58,7 @@
           <?php if ($post['category']): ?><span class="tag"><?= e($post['category']) ?></span><?php endif; ?>
         </div>
         <div class="article-share-footer">
-          <span>Share:</span>
+          <span><?= __('blog.share') ?>:</span>
           <button onclick="shareUrl('facebook')" aria-label="Facebook"><i class="fab fa-facebook-f"></i></button>
           <button onclick="shareUrl('twitter')" aria-label="Twitter"><i class="fab fa-x-twitter"></i></button>
           <button onclick="shareUrl('linkedin')" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></button>
@@ -66,25 +66,25 @@
       </div>
 
       <div class="article-nav">
-        <a href="<?= base_url('blog') ?>" class="article-nav-back"><i class="fas fa-arrow-left"></i> All Articles</a>
+        <a href="<?= base_url('blog') ?>" class="article-nav-back"><i class="fas fa-arrow-left"></i> <?= __('blog.all_articles') ?></a>
       </div>
     </div>
 
     <?php if (!empty($recentPosts)): ?>
     <aside class="article-sidebar">
       <div class="sidebar-widget">
-        <h3 class="sidebar-title">Recent Articles</h3>
+        <h3 class="sidebar-title"><?= __('blog.recent') ?></h3>
         <div class="sidebar-posts">
           <?php foreach ($recentPosts as $rp): ?>
             <a href="<?= base_url('blog/' . e($rp['slug'])) ?>" class="sidebar-post">
               <?php if ($rp['image']): ?>
                 <div class="sidebar-post-img">
-                  <img src="<?= asset('storage/uploads/' . e($rp['image'])) ?>" alt="<?= e($rp['title']) ?>">
+                  <img src="<?= asset('storage/uploads/' . e($rp['image'])) ?>" alt="<?= locale_val_e($rp, 'title') ?>">
                 </div>
               <?php endif; ?>
               <div class="sidebar-post-body">
                 <?php if ($rp['category']): ?><span class="sidebar-post-cat"><?= e($rp['category']) ?></span><?php endif; ?>
-                <h4 class="sidebar-post-title"><?= e($rp['title']) ?></h4>
+                <h4 class="sidebar-post-title"><?= locale_val_e($rp, 'title') ?></h4>
                 <?php if ($rp['published_at']): ?>
                   <span class="sidebar-post-date"><?= date('M j, Y', strtotime($rp['published_at'])) ?></span>
                 <?php endif; ?>

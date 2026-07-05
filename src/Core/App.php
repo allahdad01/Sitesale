@@ -11,6 +11,18 @@ class App
 
         Session::start();
         Response::setSecurityHeaders();
+
+        self::loadLocale();
+    }
+
+    private static function loadLocale(): void
+    {
+        $locale = $_SESSION['_locale'] ?? 'en';
+        $allowed = ['en', 'ps', 'fa'];
+        if (!in_array($locale, $allowed)) {
+            $locale = 'en';
+        }
+        $_SESSION['_locale'] = $locale;
     }
 
     private static function loadEnv(): void
@@ -61,7 +73,8 @@ class App
                 echo '<p><strong>' . e($e->getMessage()) . '</strong></p>';
                 echo '<pre>' . e($e->getTraceAsString()) . '</pre>';
             } else {
-                View::render('errors/500', ['title' => 'Server Error'], 'main');
+                $title = function_exists('__') ? __('error.500_title') : 'Server Error';
+                View::render('errors/500', ['title' => $title], 'main');
             }
 
             exit;

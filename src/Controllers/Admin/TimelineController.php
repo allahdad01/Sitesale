@@ -22,9 +22,18 @@ class TimelineController
     public function add(Request $request): void
     {
         TimelineItem::create([
-            'year'       => $request->post('year', ''),
-            'title'      => $request->post('title', ''),
-            'text'       => $request->post('text', ''),
+            'year'    => $request->post('year', ''),
+            'year_en' => $request->post('year_en', ''),
+            'year_ps' => $request->post('year_ps', ''),
+            'year_fa' => $request->post('year_fa', ''),
+            'title'   => $request->post('title', ''),
+            'title_en' => $request->post('title_en', ''),
+            'title_ps' => $request->post('title_ps', ''),
+            'title_fa' => $request->post('title_fa', ''),
+            'text'    => $request->post('text', ''),
+            'text_en' => $request->post('text_en', ''),
+            'text_ps' => $request->post('text_ps', ''),
+            'text_fa' => $request->post('text_fa', ''),
             'sort_order' => TimelineItem::maxSortOrder() + 1,
             'active'     => 1,
         ]);
@@ -59,9 +68,18 @@ class TimelineController
         }
 
         TimelineItem::update($id, [
-            'year'  => $request->post('year', ''),
-            'title' => $request->post('title', ''),
-            'text'  => $request->post('text', ''),
+            'year'     => $request->post('year', ''),
+            'year_en'  => $request->post('year_en', ''),
+            'year_ps'  => $request->post('year_ps', ''),
+            'year_fa'  => $request->post('year_fa', ''),
+            'title'    => $request->post('title', ''),
+            'title_en' => $request->post('title_en', ''),
+            'title_ps' => $request->post('title_ps', ''),
+            'title_fa' => $request->post('title_fa', ''),
+            'text'     => $request->post('text', ''),
+            'text_en'  => $request->post('text_en', ''),
+            'text_ps'  => $request->post('text_ps', ''),
+            'text_fa'  => $request->post('text_fa', ''),
         ]);
 
         Session::set('_success', 'Timeline item updated.');

@@ -3,14 +3,14 @@
   <div class="hero-ring hero-ring-2"></div>
   <div class="hero-ring hero-ring-3"></div>
 
-  <div class="hero-badge"><i class="fas fa-exclamation-circle"></i> Server Error</div>
+  <div class="hero-badge"><i class="fas fa-exclamation-circle"></i> <?= __('error.500_title') ?></div>
 
-  <h1>Something Went <span class="orange">Wrong</span></h1>
+  <h1><?= __('error.500_heading') ?></h1>
 
-  <p class="hero-sub">We've been notified and are working on it. Please try again shortly.</p>
+  <p class="hero-sub"><?= __('error.500_desc') ?></p>
 
   <div class="hero-buttons">
-    <a href="<?= base_url() ?>" class="btn-primary">Go Home</a>
-    <a href="<?= base_url('contact') ?>" class="btn-outline">Contact Us</a>
+    <a href="<?= base_url() ?>" class="btn-primary"><?= __('error.500_btn') ?></a>
+    <a href="<?= base_url('contact') ?>" class="btn-outline"><?= __('error.contact_btn') ?></a>
   </div>
 </section>

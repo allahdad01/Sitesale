@@ -31,11 +31,14 @@ class Award
     {
         $pdo = Database::connect();
         $stmt = $pdo->prepare(
-            "INSERT INTO awards (image, label, sort_order, active) VALUES (:image, :label, :sort_order, :active)"
+            "INSERT INTO awards (image, label, label_en, label_ps, label_fa, sort_order, active) VALUES (:image, :label, :label_en, :label_ps, :label_fa, :sort_order, :active)"
         );
         $stmt->execute([
-            'image'      => $data['image'] ?? '',
-            'label'      => $data['label'] ?? '',
+            'image'    => $data['image'] ?? '',
+            'label'    => $data['label'] ?? '',
+            'label_en' => $data['label_en'] ?? $data['label'] ?? '',
+            'label_ps' => $data['label_ps'] ?? '',
+            'label_fa' => $data['label_fa'] ?? '',
             'sort_order' => (int) ($data['sort_order'] ?? 0),
             'active'     => (int) ($data['active'] ?? 1),
         ]);
@@ -47,7 +50,7 @@ class Award
         $pdo = Database::connect();
         $fields = [];
         $params = ['id' => $id];
-        foreach (['image', 'label', 'sort_order', 'active'] as $c) {
+        foreach (['image', 'label', 'label_en', 'label_ps', 'label_fa', 'sort_order', 'active'] as $c) {
             if (array_key_exists($c, $data)) {
                 $fields[] = "`$c` = :$c";
                 $params[$c] = $data[$c];

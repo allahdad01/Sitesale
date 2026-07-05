@@ -8,20 +8,23 @@
 <form method="post" action="<?= base_url('admin/awards/update') ?>">
   <?= csrf_field() ?>
   <div class="settings-group">
-    <h2 class="settings-group-title">Awards Text</h2>
-    <div class="settings-grid">
-      <div class="settings-field">
-        <label>Badge Text</label>
-        <input type="text" name="awards_badge" value="<?= e(setting('awards_badge', 'Recognition & Trust')) ?>">
-      </div>
-      <div class="settings-field">
-        <label>Title (HTML allowed)</label>
-        <input type="text" name="awards_title" value="<?= e(setting('awards_title', 'Honors & <span class="orange">Accolades</span>')) ?>">
-      </div>
-      <div class="settings-field">
-        <label>Subtitle</label>
-        <textarea name="awards_subtitle" rows="3"><?= e(setting('awards_subtitle', 'Recognized by leading industry organizations for our trusted service and excellence.')) ?></textarea>
-      </div>
+    <h2 class="settings-group-title">Awards Badge</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><input type="text" name="awards_badge" value="<?= e(setting('awards_badge', 'Recognition & Trust')) ?>"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="awards_badge_ps" value="<?= e(setting('awards_badge_ps', '')) ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="awards_badge_fa" value="<?= e(setting('awards_badge_fa', '')) ?>"></div>
+    </div>
+    <h2 class="settings-group-title" style="margin-top:16px">Title (HTML allowed)</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><input type="text" name="awards_title" value="<?= e(setting('awards_title', 'Honors & <span class="orange">Accolades</span>')) ?>"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="awards_title_ps" value="<?= e(setting('awards_title_ps', '')) ?>"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="awards_title_fa" value="<?= e(setting('awards_title_fa', '')) ?>"></div>
+    </div>
+    <h2 class="settings-group-title" style="margin-top:16px">Subtitle</h2>
+    <div class="locale-row">
+      <div class="locale-input"><label>EN</label><textarea name="awards_subtitle" rows="3"><?= e(setting('awards_subtitle', 'Recognized by leading industry organizations...')) ?></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="awards_subtitle_ps" rows="3"><?= e(setting('awards_subtitle_ps', '')) ?></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="awards_subtitle_fa" rows="3"><?= e(setting('awards_subtitle_fa', '')) ?></textarea></div>
     </div>
     <button type="submit" class="btn-new" style="margin-top:16px"><i class="fas fa-save"></i> Save Text</button>
   </div>
@@ -55,16 +58,20 @@
   <?php endif; ?>
 
   <h3 style="font-size:14px;color:var(--navy);margin-bottom:12px">Add New Award</h3>
-  <form method="post" action="<?= base_url('admin/awards/add') ?>" enctype="multipart/form-data" style="display:flex;gap:12px;align-items:end;flex-wrap:wrap">
+  <form method="post" action="<?= base_url('admin/awards/add') ?>" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:12px;max-width:500px">
     <?= csrf_field() ?>
-    <div class="settings-field" style="flex:1;min-width:200px">
-      <label>Label</label>
-      <input type="text" name="label" placeholder="e.g. Kam Air Award 2020" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
+    <h4 style="font-size:13px;margin:0;color:var(--navy)">Label</h4>
+    <div class="locale-row" style="margin-bottom:0">
+      <div class="locale-input"><label>EN</label><input type="text" name="label_en" placeholder="e.g. Kam Air Award 2020"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="label_ps"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="label_fa"></div>
     </div>
-    <div class="settings-field" style="flex:1;min-width:200px">
-      <label>Image</label>
-      <input type="file" name="image" accept="image/png,image/jpeg,image/webp" required style="font-size:13px">
+    <div style="display:flex;gap:12px;align-items:end">
+      <div class="settings-field" style="flex:1">
+        <label>Image</label>
+        <input type="file" name="image" accept="image/png,image/jpeg,image/webp" required>
+      </div>
+      <button type="submit" class="btn-new"><i class="fas fa-plus"></i> Add Award</button>
     </div>
-    <button type="submit" class="btn-new"><i class="fas fa-plus"></i> Add Award</button>
   </form>
 </div>

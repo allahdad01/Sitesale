@@ -45,28 +45,32 @@
   <h3 style="font-size:14px;color:var(--navy);margin-bottom:12px">Add New Service</h3>
   <form method="post" action="<?= base_url('admin/services/add') ?>" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:12px;max-width:600px">
     <?= csrf_field() ?>
-    <div class="settings-grid">
-      <div class="settings-field">
-        <label>Title</label>
-        <input type="text" name="title" placeholder="e.g. Umrah Packages" required style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
-      </div>
-      <div class="settings-field">
-        <label>Tag</label>
-        <input type="text" name="tag" placeholder="e.g. UMRAH" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
-      </div>
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Title</h4>
+    <div class="locale-row" style="margin-bottom:0">
+      <div class="locale-input"><label>EN</label><input type="text" name="title_en" placeholder="e.g. Umrah Packages" required></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="title_ps"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="title_fa"></div>
     </div>
-    <div class="settings-field">
-      <label>Description</label>
-      <textarea name="description" rows="3" placeholder="Service description..." style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px"></textarea>
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Tag</h4>
+    <div class="locale-row" style="margin-bottom:0">
+      <div class="locale-input"><label>EN</label><input type="text" name="tag_en" placeholder="e.g. UMRAH"></div>
+      <div class="locale-input"><label>پښتو</label><input type="text" name="tag_ps"></div>
+      <div class="locale-input"><label>دری</label><input type="text" name="tag_fa"></div>
+    </div>
+    <h4 style="font-size:13px;margin:0 0 4px;color:var(--navy)">Description</h4>
+    <div class="locale-row" style="margin-bottom:0">
+      <div class="locale-input"><label>EN</label><textarea name="description_en" rows="3" placeholder="Service description..."></textarea></div>
+      <div class="locale-input"><label>پښتو</label><textarea name="description_ps" rows="3"></textarea></div>
+      <div class="locale-input"><label>دری</label><textarea name="description_fa" rows="3"></textarea></div>
     </div>
     <div class="settings-grid">
       <div class="settings-field">
         <label>Link URL</label>
-        <input type="text" name="link" placeholder="/contact" value="/contact" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px">
+        <input type="text" name="link" placeholder="/contact" value="/contact">
       </div>
       <div class="settings-field">
         <label>Image</label>
-        <input type="file" name="image" accept="image/png,image/jpeg,image/webp" required style="font-size:13px">
+        <input type="file" name="image" accept="image/png,image/jpeg,image/webp" required>
       </div>
     </div>
     <button type="submit" class="btn-new" style="align-self:flex-start"><i class="fas fa-plus"></i> Add Service</button>

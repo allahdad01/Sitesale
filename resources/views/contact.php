@@ -3,156 +3,136 @@
   <div class="hero-ring hero-ring-2"></div>
   <div class="hero-ring hero-ring-3"></div>
 
-  <div class="hero-badge"><i class="fas fa-headset"></i> We're Here To Help</div>
+  <div class="hero-badge"><i class="fas fa-headset"></i> <?= e(setting('contact_hero_badge', "We're Here To Help")) ?></div>
 
-  <h1>Let's Plan Your<br><span class="orange">Next Journey</span></h1>
+  <h1><?= setting('contact_hero_title', "Let's Plan Your<br><span class=\"orange\">Next Journey</span>") ?></h1>
 
-  <p class="hero-sub">Whether you need a full Umrah package, a flight ticket, or just some advice &mdash; reach out and our team will respond within 24 hours.</p>
+  <p class="hero-sub"><?= e(setting('contact_hero_subtitle', 'Whether you need a full Umrah package, a flight ticket, or just some advice — reach out and our team will respond within 24 hours.')) ?></p>
 
   <div class="breadcrumb">
-    <span>Home</span> <span>/</span> <span class="current">Contact Us</span>
-  </div>
-</section>
-
-<section class="contact-cards">
-  <span class="section-tag">Get In Touch</span>
-  <h2 class="section-title">How To Reach Us</h2>
-  <p class="section-desc">Choose the method that works best for you &mdash; we're available seven days a week.</p>
-
-  <div class="contact-info-grid">
-    <div class="contact-info-card">
-      <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
-      <h4>Phone &amp; WhatsApp</h4>
-      <p><span class="highlight">+93 700 000 000</span></p>
-      <p>Call or message us anytime during business hours.</p>
-    </div>
-    <div class="contact-info-card">
-      <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
-      <h4>Email</h4>
-      <p><span class="highlight">info@almoqadas.com</span></p>
-      <p>Send us your inquiry and we'll reply within 24 hours.</p>
-    </div>
-    <div class="contact-info-card">
-      <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
-      <h4>Office Location</h4>
-      <p><span class="highlight">Kabul, Afghanistan</span></p>
-      <p>Visit us in person for a consultation.</p>
-    </div>
-    <div class="contact-info-card">
-      <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
-      <h4>Business Hours</h4>
-      <p><span class="highlight">Sat&ndash;Thu: 8 AM &ndash; 6 PM</span></p>
-      <p>Friday: Closed</p>
-    </div>
+    <span><?= __('contact_page.breadcrumb_home') ?></span> <span>/</span> <span class="current"><?= __('contact_page.breadcrumb_current') ?></span>
   </div>
 </section>
 
 <section class="contact-main">
   <div class="contact-side">
-    <h3>Start Your Journey Here</h3>
-    <p>Fill out the form and one of our travel consultants will get back to you with a personalized package.</p>
+    <div class="contact-side-header">
+      <span class="contact-side-badge"><i class="fas fa-comment-dots"></i> <?= e(setting('contact_sidebar_badge', 'Get In Touch')) ?></span>
+      <h3><?= e(setting('contact_sidebar_heading', "We'd Love to Hear From You")) ?></h3>
+      <p><?= e(setting('contact_sidebar_text', 'Our travel consultants are ready to help plan your perfect journey.')) ?></p>
+    </div>
+
+    <div class="contact-side-divider"></div>
 
     <div class="contact-side-row">
       <div class="contact-side-icon"><i class="fas fa-phone"></i></div>
       <div>
-        <h5>Phone / WhatsApp</h5>
-        <p><a href="tel:+93700000000" style="color:rgba(255,255,255,0.5);text-decoration:none;">+93 700 000 000</a></p>
+        <h5><?= __('contact_page.phone_label') ?></h5>
+        <p><a href="tel:<?= e(preg_replace('/[^\d+]/', '', setting('contact_phone', '+93 700 000 000'))) ?>"><?= e(setting('contact_phone', '+93 700 000 000')) ?></a></p>
       </div>
     </div>
     <div class="contact-side-row">
       <div class="contact-side-icon"><i class="fas fa-envelope"></i></div>
       <div>
-        <h5>Email</h5>
-        <p><a href="mailto:info@almoqadas.com" style="color:rgba(255,255,255,0.5);text-decoration:none;">info@almoqadas.com</a></p>
+        <h5><?= __('contact_page.email_label') ?></h5>
+        <p><a href="mailto:<?= e(setting('contact_email', 'info@almoqadas.com')) ?>"><?= e(setting('contact_email', 'info@almoqadas.com')) ?></a></p>
       </div>
     </div>
     <div class="contact-side-row">
       <div class="contact-side-icon"><i class="fas fa-map-marker-alt"></i></div>
       <div>
-        <h5>Office</h5>
-        <p>Kabul, Afghanistan</p>
+        <h5><?= __('contact_page.office_label') ?></h5>
+        <p><?= e(setting('contact_address', 'Kabul, Afghanistan')) ?></p>
       </div>
     </div>
 
     <div class="contact-side-hours">
-      <div class="hours-row"><span>Saturday &ndash; Thursday</span><span>8:00 AM &ndash; 6:00 PM</span></div>
-      <div class="hours-row"><span>Friday</span><span>Closed</span></div>
+      <div class="hours-row"><span><?= __('contact_page.hours_sat_thu') ?></span><span><?= e(setting('contact_hours_week', '8:00 AM – 6:00 PM')) ?></span></div>
+      <div class="hours-row"><span><?= __('contact_page.hours_friday') ?></span><span><?= e(setting('contact_hours_friday', 'Closed')) ?></span></div>
     </div>
   </div>
 
   <div class="contact-form-card">
-    <h3>Request a Package</h3>
-    <p>Tell us about your travel plans and we'll create a custom quote.</p>
+    <div class="contact-form-card-header">
+      <span class="form-badge"><i class="fas fa-paper-plane"></i> <?= e(setting('contact_form_badge', 'Send Us a Message')) ?></span>
+      <h3><?= e(setting('contact_form_heading', 'Request a Package')) ?></h3>
+      <p><?= e(setting('contact_form_text', "Tell us about your travel plans and we'll create a custom quote.")) ?></p>
+    </div>
 
     <form id="contactForm" novalidate>
       <?= csrf_field() ?>
       <div class="form-row">
         <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="full_name" placeholder="Your full name" required>
+          <label for="fullName"><?= __('contact.form_name') ?></label>
+          <input type="text" id="fullName" name="full_name" placeholder="<?= __('contact.form_placeholder_name') ?>" required>
         </div>
         <div class="form-group">
-          <label for="phone">Phone / WhatsApp</label>
-          <input type="tel" id="phone" name="phone" placeholder="+93 ..." required>
+          <label for="phone"><?= __('contact.form_phone') ?></label>
+          <input type="tel" id="phone" name="phone" placeholder="<?= __('contact.form_placeholder_phone') ?>" required>
         </div>
       </div>
       <div class="form-group">
-        <label for="email">Email (optional)</label>
+        <label for="email"><?= __('booking.form_email') ?></label>
         <input type="email" id="email" name="email" placeholder="your@email.com">
       </div>
       <div class="form-group">
-        <label for="service">Service Required</label>
+        <label for="service"><?= __('contact.form_service') ?></label>
         <select id="service" name="service">
-          <option value="">Select a service...</option>
-          <option>Umrah Package</option>
-          <option>Hajj Package</option>
-          <option>Flight Booking</option>
-          <option>Visa Services</option>
-          <option>Hotel Reservation</option>
-          <option>Custom Tour</option>
+          <option value=""><?= __('contact_page.form_select') ?></option>
+          <option><?= __('contact.form_umrah') ?></option>
+          <option><?= __('contact.form_hajj') ?></option>
+          <option><?= __('contact.form_flight') ?></option>
+          <option><?= __('contact.form_visa') ?></option>
+          <option><?= __('contact.form_hotel') ?></option>
+          <option><?= __('contact.form_tour') ?></option>
         </select>
       </div>
       <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell us about your travel plans, dates, group size, and any special requirements..." rows="4"></textarea>
+        <label for="message"><?= __('contact.form_message') ?></label>
+        <textarea id="message" name="message" placeholder="<?= __('contact.form_placeholder_message') ?>" rows="4"></textarea>
       </div>
-      <button type="submit" class="btn-primary" style="width:100%;">Send Enquiry <i class="fas fa-arrow-right"></i></button>
+      <button type="submit" class="btn-primary" style="width:100%;"><?= __('contact.form_submit') ?> <i class="fas fa-arrow-right"></i></button>
       <p class="form-status" id="formStatus" role="status"></p>
     </form>
   </div>
 </section>
 
 <section class="faq">
-  <span class="section-tag">Common Questions</span>
-  <h2 class="section-title">Frequently Asked Questions</h2>
-  <p class="section-desc">Quick answers to the most common inquiries we receive.</p>
+  <span class="section-tag"><?= e(setting('contact_faq_tag', 'Common Questions')) ?></span>
+  <h2 class="section-title"><?= e(setting('contact_faq_title', 'Frequently Asked Questions')) ?></h2>
+  <p class="section-desc"><?= e(setting('contact_faq_desc', 'Quick answers to the most common inquiries we receive.')) ?></p>
 
   <div class="faq-list">
+    <?php foreach ($faqs as $f): ?>
     <div class="faq-item">
-      <h4>What documents do I need for Umrah?</h4>
-      <p>You need a valid passport (6+ months validity), passport-size photos, and a completed visa application form. We handle the rest.</p>
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span><?= locale_val_e($f, 'question') ?></span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p><?= locale_val_e($f, 'answer') ?></p>
+      </div>
     </div>
-    <div class="faq-item">
-      <h4>How far in advance should I book?</h4>
-      <p>We recommend booking at least 4&ndash;6 weeks before your desired travel date, especially during peak seasons like Ramadan.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Do you offer group discounts?</h4>
-      <p>Yes! We offer special rates for groups of 5 or more travelers. Contact us for a custom group quote.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Can I customize my package?</h4>
-      <p>Absolutely. Every package can be tailored to your preferences &mdash; hotel star rating, meal plans, extra city tours, and more.</p>
-    </div>
-    <div class="faq-item">
-      <h4>What payment methods do you accept?</h4>
-      <p>We accept bank transfers, cash payments at our office, and mobile money transfers. Contact us for details.</p>
-    </div>
+    <?php endforeach; ?>
   </div>
 </section>
 
-<?php $page_scripts = <<<SCRIPT
+<?php
+$contactSubmitUrl = base_url('contact/submit');
+$successText = __('contact.form_success');
+$errorText = __('contact.form_error');
+$networkErrorText = __('contact.form_network_error');
+$page_scripts = <<<SCRIPT
 <script>
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('faq-open');
+  document.querySelectorAll('.faq-item.faq-open').forEach(function (el) {
+    el.classList.remove('faq-open');
+  });
+  if (!isOpen) item.classList.add('faq-open');
+}
+
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
   var form = this;
@@ -163,23 +143,23 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   var formData = new FormData(form);
   var status = document.getElementById('formStatus');
 
-  fetch('<?= base_url('contact/submit') ?>', {
+  fetch('$contactSubmitUrl', {
     method: 'POST',
     body: formData,
   })
   .then(function (r) { return r.json(); })
   .then(function (data) {
     if (data.success) {
-      status.textContent = 'Thank you! We have received your enquiry and will get back to you shortly.';
+      status.textContent = '$successText';
       status.className = 'form-status visible';
       form.reset();
     } else {
-      status.textContent = data.error || 'Something went wrong. Please try again.';
+      status.textContent = data.error || '$errorText';
       status.className = 'form-status visible error';
     }
   })
   .catch(function () {
-    status.textContent = 'Network error. Please try again.';
+    status.textContent = '$networkErrorText';
     status.className = 'form-status visible error';
   });
 });
