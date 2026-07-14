@@ -68,15 +68,15 @@ class TimelineController
         }
 
         TimelineItem::update($id, [
-            'year'     => $request->post('year', ''),
+            'year'     => $request->post('year', $item['year']) ?: $request->post('year_en', $item['year_en'] ?: $item['year']),
             'year_en'  => $request->post('year_en', ''),
             'year_ps'  => $request->post('year_ps', ''),
             'year_fa'  => $request->post('year_fa', ''),
-            'title'    => $request->post('title', ''),
+            'title'    => $request->post('title', $item['title']) ?: $request->post('title_en', $item['title_en'] ?: $item['title']),
             'title_en' => $request->post('title_en', ''),
             'title_ps' => $request->post('title_ps', ''),
             'title_fa' => $request->post('title_fa', ''),
-            'text'     => $request->post('text', ''),
+            'text'     => $request->post('text', $item['text']) ?: $request->post('text_en', $item['text_en'] ?: $item['text']),
             'text_en'  => $request->post('text_en', ''),
             'text_ps'  => $request->post('text_ps', ''),
             'text_fa'  => $request->post('text_fa', ''),

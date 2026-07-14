@@ -7,7 +7,7 @@ use App\Core\Session;
 
 class RateLimitMiddleware
 {
-    private int $maxAttempts = 5;
+    private int $maxAttempts = 60;
     private int $decayMinutes = 15;
 
     public function handle(Request $request): void

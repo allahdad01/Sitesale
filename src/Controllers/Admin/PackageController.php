@@ -34,12 +34,12 @@ class PackageController
         $image = $this->handleUpload('image');
 
         Package::create([
-            'title'          => $request->post('title', ''),
+            'title'          => $request->post('title', '') ?: $request->post('title_en', ''),
             'title_en'       => $request->post('title_en', ''),
             'title_ps'       => $request->post('title_ps', ''),
             'title_fa'       => $request->post('title_fa', ''),
             'slug'           => $slug,
-            'description'    => $request->post('description', ''),
+            'description'    => $request->post('description', '') ?: $request->post('description_en', ''),
             'description_en' => $request->post('description_en', ''),
             'description_ps' => $request->post('description_ps', ''),
             'description_fa' => $request->post('description_fa', ''),
@@ -48,7 +48,7 @@ class PackageController
             'duration_days'  => (int) $request->post('duration_days', 1),
             'max_people'     => (int) $request->post('max_people', 1),
             'category'       => $request->post('category', 'tour'),
-            'destination'    => $request->post('destination', ''),
+            'destination'    => $request->post('destination', '') ?: $request->post('destination_en', ''),
             'destination_en' => $request->post('destination_en', ''),
             'destination_ps' => $request->post('destination_ps', ''),
             'destination_fa' => $request->post('destination_fa', ''),
@@ -85,12 +85,12 @@ class PackageController
         }
 
         Package::update($id, [
-            'title'          => $request->post('title', ''),
+            'title'          => $request->post('title', $pkg['title']) ?: $request->post('title_en', $pkg['title_en'] ?: $pkg['title']),
             'title_en'       => $request->post('title_en', ''),
             'title_ps'       => $request->post('title_ps', ''),
             'title_fa'       => $request->post('title_fa', ''),
             'slug'           => $request->post('slug', ''),
-            'description'    => $request->post('description', ''),
+            'description'    => $request->post('description', $pkg['description']) ?: $request->post('description_en', $pkg['description_en'] ?: $pkg['description']),
             'description_en' => $request->post('description_en', ''),
             'description_ps' => $request->post('description_ps', ''),
             'description_fa' => $request->post('description_fa', ''),
@@ -99,7 +99,7 @@ class PackageController
             'duration_days'  => (int) $request->post('duration_days', 1),
             'max_people'     => (int) $request->post('max_people', 1),
             'category'       => $request->post('category', 'tour'),
-            'destination'    => $request->post('destination', ''),
+            'destination'    => $request->post('destination', $pkg['destination']) ?: $request->post('destination_en', $pkg['destination_en'] ?: $pkg['destination']),
             'destination_en' => $request->post('destination_en', ''),
             'destination_ps' => $request->post('destination_ps', ''),
             'destination_fa' => $request->post('destination_fa', ''),
